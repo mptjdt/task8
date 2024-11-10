@@ -10,11 +10,11 @@ namespace 墨心{
         // 主方法，程序入口
         public static void Mainstart(){
             // 创建后台世界
-            WorldInstance = new World();
+            WorldInstance = InitializeWorld() ;
             // 创建前台世界
             FrontendInstance = new FrontendWorld();
             // 调用流程创建世界
-            CreateWorld(10,10);
+            CreateWorld();
         }
     }
    

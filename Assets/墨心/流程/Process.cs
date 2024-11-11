@@ -11,6 +11,7 @@ namespace Ä«ÐÄ{
                     FrontendInstance.CreateTileUI(x, y, Grid[x, y]);  // ´«µÝ TileInfo
                 }
             }
+            ShowPlayer(WorldInstance.Player);
         }
     }
 }

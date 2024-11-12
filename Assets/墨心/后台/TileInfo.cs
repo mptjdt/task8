@@ -1,15 +1,15 @@
-using Ä«ĞÄ;
+ï»¿using å¢¨å¿ƒ;
 
-namespace Ä«ĞÄ{
+namespace å¢¨å¿ƒ{
     public class TileInfo{
-        // µØ¿éµÄÍÁÖÊÀàĞÍ×Ö¶Î
+        // åœ°å—çš„åœŸè´¨ç±»å‹å­—æ®µ
         public string SoilType { get; set; }   
     }
-    // ¾²Ì¬·½·¨£¬ÓÃÓÚ³õÊ¼»¯ TileInfo ¶ÔÏó
+    // é™æ€æ–¹æ³•ï¼Œç”¨äºåˆå§‹åŒ– TileInfo å¯¹è±¡
     public static partial class GameManager{
-        public static TileInfo ´´½¨É³Ä®µØ¿é(){
+        public static TileInfo åˆ›å»ºæ²™æ¼ åœ°å—(){
             TileInfo tileInfo = new TileInfo();
-            tileInfo.SoilType = "desert";  // Ä¬ÈÏÍÁÖÊÀàĞÍÎªÉ³Ä®
+            tileInfo.SoilType = "desert";  // é»˜è®¤åœŸè´¨ç±»å‹ä¸ºæ²™æ¼ 
             return tileInfo;
         }
     }

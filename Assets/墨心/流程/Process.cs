@@ -1,17 +1,22 @@
-using UnityEngine;
-//Á÷³ÌÎÄ¼ş
-namespace Ä«ĞÄ{
-    //Á÷³Ìº¯Êı
+ï»¿using UnityEngine;
+//æµç¨‹æ–‡ä»¶
+namespace å¢¨å¿ƒ{
+    //æµç¨‹å‡½æ•°
     public static partial class GameManager{
         public static void CreateWorld(){
-            int gridWidth = WorldInstance.Width;  // »ñÈ¡µØÍ¼µÄ¿í¶È£¨ĞĞÊı£©
-            int gridHeight = WorldInstance.Height;  // »ñÈ¡µØÍ¼µÄ¸ß¶È£¨ÁĞÊı£©
-            for (int x = 0; x < gridWidth; x++){
-                for (int y = 0; y < gridHeight; y++){
-                    FrontendInstance.CreateTileUI(x, y, Grid[x, y]);  // ´«µİ TileInfo
+            int gridWidth = WorldInstance.Width;  // è·å–åœ°å›¾çš„å®½åº¦ï¼ˆè¡Œæ•°ï¼‰
+            int gridHeight = WorldInstance.Height;  // è·å–åœ°å›¾çš„é«˜åº¦ï¼ˆåˆ—æ•°ï¼‰
+            for (int x = 0; x < gridWidth; x++)
+            {
+                for (int y = 0; y < gridHeight; y++)
+                {
+                    FrontendInstance.CreateTileUI(x, y, WorldInstance.Grid[x, y]);  // ä¼ é€’ TileInfo
                 }
             }
-            ShowPlayer(WorldInstance.Player);
+        }
+        public static void CreatePlayer(){
+            WorldInstance.Player = InitializePlayer();
+            FrontendInstance.ShowPlayer(WorldInstance.Player);
         }
     }
 }

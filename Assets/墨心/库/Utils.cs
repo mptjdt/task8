@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-namespace Ä«ÐÄ{
-    // ¹¤¾ßÎÄ¼þ
+namespace å¢¨å¿ƒ{
+    // å·¥å…·æ–‡ä»¶
     public static partial class GameManager{
-        // ¼ÓÔØ¾«ÁéµÄ¾²Ì¬·½·¨
+        // åŠ è½½ç²¾çµçš„é™æ€æ–¹æ³•
         public static Sprite LoadSprite(string path) =>
             Resources.Load<Sprite>(path) ?? throw new System.Exception($"Failed to load sprite at {path}. Sprite is null.");
     }

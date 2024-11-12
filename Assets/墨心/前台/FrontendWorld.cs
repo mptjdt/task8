@@ -1,27 +1,25 @@
-using UnityEngine;
-namespace Ä«ĞÄ{
+ï»¿using UnityEngine;
+namespace å¢¨å¿ƒ{
     public class FrontendWorld : MonoBehaviour{
-        // ´´½¨ÌØ¶¨×ø±êµÄµØ¿é UI
+        // åˆ›å»ºç‰¹å®šåæ ‡çš„åœ°å— UI
         public void CreateTileUI(int x, int y, TileInfo tileInfo){
-            GameObject tileObj = new GameObject("Tile_" + x + "_" + y);  // ´´½¨Ò»¸öĞÂµÄ GameObject£¬ÃüÃûÎª "Tile_x_y"
-            tileObj.transform.position = new Vector3(x, y, 0);  // ÉèÖÃµØ¿éµÄÎ»ÖÃ
+            GameObject tileObj = new GameObject("Tile_" + x + "_" + y);  // åˆ›å»ºä¸€ä¸ªæ–°çš„ GameObjectï¼Œå‘½åä¸º "Tile_x_y"
+            tileObj.transform.position = new Vector3(x, y, 0);  // è®¾ç½®åœ°å—çš„ä½ç½®
 
-            // ¼ÓÔØ¾«Áé²¢ÉèÖÃµ½ SpriteRenderer ÉÏ
-            tileObj.AddComponent<SpriteRenderer>().sprite = GameManager.LoadSprite(tileInfo.SoilType);  // Ìí¼Ó SpriteRenderer ×é¼ş²¢Ö±½ÓÉèÖÃ¾«Áé
+            // åŠ è½½ç²¾çµå¹¶è®¾ç½®åˆ° SpriteRenderer ä¸Š
+            tileObj.AddComponent<SpriteRenderer>().sprite = GameManager.LoadSprite(tileInfo.SoilType);  // æ·»åŠ  SpriteRenderer ç»„ä»¶å¹¶ç›´æ¥è®¾ç½®ç²¾çµ
         }
-    }
-    public static partial class GameManager{
-        public static void ShowPlayer(Player player){
-            // ´´½¨Ò»¸öĞÂµÄ GameObject ÓÃÀ´ÏÔÊ¾ÈËÎï
+        public void ShowPlayer(Player player){
+            // åˆ›å»ºä¸€ä¸ªæ–°çš„ GameObject ç”¨æ¥æ˜¾ç¤ºäººç‰©
             GameObject playerObj = new GameObject("Player");
 
-            // ½«Íæ¼Ò¶ÔÏóµÄÎ»ÖÃÉèÖÃÎªÍæ¼ÒµÄ×ø±ê
+            // å°†ç©å®¶å¯¹è±¡çš„ä½ç½®è®¾ç½®ä¸ºç©å®¶çš„åæ ‡
             playerObj.transform.position = player.Position;
 
-            // »ñÈ¡»òÌí¼Ó SpriteRenderer ²¢ÉèÖÃ¾«Áé
+            // è·å–æˆ–æ·»åŠ  SpriteRenderer å¹¶è®¾ç½®ç²¾çµ
             SpriteRenderer spriteRenderer = playerObj.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = GameManager.LoadSprite("player1");  // ÉèÖÃÈËÎï¾«Áé
-            spriteRenderer.sortingOrder = 1;  // ÈËÎïµÄÅÅĞòË³Ğò£¬½Ï¸ßµÄÖµÏÔÊ¾ÔÚÉÏ·½
+            spriteRenderer.sprite = GameManager.LoadSprite("player1");  // è®¾ç½®äººç‰©ç²¾çµ
+            spriteRenderer.sortingOrder = 1;  // äººç‰©çš„æ’åºé¡ºåºï¼Œè¾ƒé«˜çš„å€¼æ˜¾ç¤ºåœ¨ä¸Šæ–¹
 
         }
 

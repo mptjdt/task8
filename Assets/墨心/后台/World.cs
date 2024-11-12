@@ -1,38 +1,38 @@
-using UnityEngine;
-using static Ä«ĞÄ.GameManager;
-namespace Ä«ĞÄ{
+ï»¿using UnityEngine;
+using static å¢¨å¿ƒ.GameManager;
+namespace å¢¨å¿ƒ{
     public class World{
-
-        // ¿í¶ÈÊôĞÔ
-        public int Width { get { return 10; } }
-        // ¸ß¶ÈÊôĞÔ
-        public int Height { get { return 10; } }
-        // ½« Player ×÷Îª World ÀàµÄ³ÉÔ±
+  
+        public TileInfo[,] Grid { get; set; }
+        // å®½åº¦å±æ€§
+        public int Width { get { return Grid.GetLength(0); } }
+        // é«˜åº¦å±æ€§
+        public int Height { get { return Grid.GetLength(1); } }
+        // å°† Player ä½œä¸º World ç±»çš„æˆå‘˜
         public Player Player { get; set; }
+
     }
     public class Player{
         public Vector2 Position { get; set; }
     }
     public static partial class GameManager{
-        public static TileInfo[,] Grid { get; set; }
-        // ¾²Ì¬·½·¨£¬³õÊ¼»¯µØ¿éÍø¸ñ²¢·µ»Ø³õÊ¼»¯ºóµÄ World ¶ÔÏó
-        public static World InitializeWorld(){
-            World world = new World();  // ´´½¨ĞÂµÄ World ÊµÀı
-            Grid = new TileInfo[world.Width, world.Height];  // ¸ù¾İÖ¸¶¨´óĞ¡´´½¨Íø¸ñ
-            for (int x = 0; x < world.Width; x++){
-                for (int y = 0; y < world.Height; y++){
-                    Grid[x, y] = ´´½¨É³Ä®µØ¿é();  // Ã¿¸öµØ¿éÄ¬ÈÏ³õÊ¼»¯ÎªÉ³Ä®µØ¿é
+        // é™æ€æ–¹æ³•ï¼Œåˆå§‹åŒ–åœ°å—ç½‘æ ¼å¹¶è¿”å›åˆå§‹åŒ–åçš„ World å¯¹è±¡
+        public static World InitializeWorld(int width,int height){
+            World world = new World();  // åˆ›å»ºæ–°çš„ World å®ä¾‹
+            world.Grid = new TileInfo[width,height];  // æ ¹æ®æŒ‡å®šå¤§å°åˆ›å»ºç½‘æ ¼
+            for (int x = 0; x < width; x++){
+                for (int y = 0; y < height; y++){
+                    world.Grid[x, y] = åˆ›å»ºæ²™æ¼ åœ°å—();  // æ¯ä¸ªåœ°å—é»˜è®¤åˆå§‹åŒ–ä¸ºæ²™æ¼ åœ°å—
                 }
             }
-            world.Player = CreatePlayer();
-            return world;  // ·µ»Ø³õÊ¼»¯ºóµÄ World ¶ÔÏó
+            return world;  // è¿”å›åˆå§‹åŒ–åçš„ World å¯¹è±¡
         }
-        // ¾²Ì¬·½·¨´úÌæ¹¹Ôìº¯Êı£¬²¢·µ»Ø Player ÊµÀı
-        public static Player CreatePlayer(){
-            Player player = new Player();  // ´´½¨ĞÂµÄ Player ÊµÀı
-            player.Position = new Vector2(0, 0);  // ³õÊ¼»¯Î»ÖÃ
+        // é™æ€æ–¹æ³•ä»£æ›¿æ„é€ å‡½æ•°ï¼Œå¹¶è¿”å› Player å®ä¾‹
+        public static Player InitializePlayer(){
+            Player player = new Player();  // åˆ›å»ºæ–°çš„ Player å®ä¾‹
+            player.Position = new Vector2(0, 0);  // åˆå§‹åŒ–ä½ç½®
 
-            return player;  // ·µ»Ø Player ÊµÀı
+            return player;  // è¿”å› Player å®ä¾‹
         }
     }
 }

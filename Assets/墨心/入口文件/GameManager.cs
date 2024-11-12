@@ -1,20 +1,22 @@
-using System.Diagnostics;
+ï»¿using System.Diagnostics;
 using UnityEngine;
-//ÏîÄ¿Èë¿ÚÎÄ¼ş
-namespace Ä«ĞÄ{
-    // ²¿·ÖÀà£º°üº¬Èë¿Úº¯Êı
+//é¡¹ç›®å…¥å£æ–‡ä»¶
+namespace å¢¨å¿ƒ{
+    // éƒ¨åˆ†ç±»ï¼šåŒ…å«å…¥å£å‡½æ•°
     public static partial class GameManager{
-        public static World WorldInstance { get; private set; }  // ´æ´¢ºóÌ¨ÊÀ½çµÄÊµÀı
-        public static FrontendWorld FrontendInstance { get; private set; }  // ´æ´¢Ç°Ì¨ÊÀ½çµÄÊµÀı
+        public static World WorldInstance { get; private set; }  // å­˜å‚¨åå°ä¸–ç•Œçš„å®ä¾‹
+        public static FrontendWorld FrontendInstance { get; private set; }  // å­˜å‚¨å‰å°ä¸–ç•Œçš„å®ä¾‹
 
-        // Ö÷·½·¨£¬³ÌĞòÈë¿Ú
+        // ä¸»æ–¹æ³•ï¼Œç¨‹åºå…¥å£
         public static void Mainstart(){
-            // ´´½¨ºóÌ¨ÊÀ½ç
-            WorldInstance = InitializeWorld() ;
-            // ´´½¨Ç°Ì¨ÊÀ½ç
+            // åˆ›å»ºåå°ä¸–ç•Œ
+            WorldInstance = InitializeWorld(10,10) ;
+            // åˆ›å»ºå‰å°ä¸–ç•Œ
             FrontendInstance = new FrontendWorld();
-            // µ÷ÓÃÁ÷³Ì´´½¨ÊÀ½ç
+            // è°ƒç”¨æµç¨‹åˆ›å»ºä¸–ç•Œ
             CreateWorld();
+            // è°ƒç”¨æµç¨‹åˆ›å»ºäººç‰©
+            CreatePlayer();
         }
     }
    

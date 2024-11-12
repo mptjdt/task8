@@ -6,16 +6,13 @@ namespace 墨心{
         public static void CreateWorld(){
             int gridWidth = WorldInstance.Width;  // 获取地图的宽度（行数）
             int gridHeight = WorldInstance.Height;  // 获取地图的高度（列数）
-            for (int x = 0; x < gridWidth; x++)
-            {
-                for (int y = 0; y < gridHeight; y++)
-                {
+            for (int x = 0; x < gridWidth; x++){
+                for (int y = 0; y < gridHeight; y++){
                     FrontendInstance.CreateTileUI(x, y, WorldInstance.Grid[x, y]);  // 传递 TileInfo
                 }
             }
         }
-        public static void CreatePlayer(){
-            WorldInstance.Player = InitializePlayer();
+        public static void CreatePlayer(){ 
             FrontendInstance.ShowPlayer(WorldInstance.Player);
         }
     }

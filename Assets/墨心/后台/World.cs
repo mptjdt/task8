@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Dynamic;
+using UnityEngine;
 using static 墨心.GameManager;
 namespace 墨心{
     public class World{
-  
+
         public TileInfo[,] Grid { get; set; }
         // 宽度属性
         public int Width { get { return Grid.GetLength(0); } }
@@ -12,14 +13,16 @@ namespace 墨心{
         public Player Player { get; set; }
 
     }
-    public class Player{
+    public class Player : MonoBehaviour {
         public Vector2 Position { get; set; }
+        public float moveSpeed {get;set;}//移动速度
+        public float rotationSpeed { get; set; }//旋转速度
     }
     public static partial class GameManager{
         // 静态方法，初始化地块网格并返回初始化后的 World 对象
-        public static World InitializeWorld(int width,int height){
+        public static World InitializeWorld(int width, int height){
             World world = new World();  // 创建新的 World 实例
-            world.Grid = new TileInfo[width,height];  // 根据指定大小创建网格
+            world.Grid = new TileInfo[width, height];  // 根据指定大小创建网格
             for (int x = 0; x < width; x++){
                 for (int y = 0; y < height; y++){
                     world.Grid[x, y] = 创建沙漠地块();  // 每个地块默认初始化为沙漠地块
@@ -28,10 +31,11 @@ namespace 墨心{
             return world;  // 返回初始化后的 World 对象
         }
         // 静态方法代替构造函数，并返回 Player 实例
-        public static Player InitializePlayer(){
+        public static Player InitializePlayer(float movespeed,float rotationspeed){
             Player player = new Player();  // 创建新的 Player 实例
             player.Position = new Vector2(0, 0);  // 初始化位置
-
+            player.moveSpeed = movespeed;
+            player.rotationSpeed = rotationspeed;
             return player;  // 返回 Player 实例
         }
     }

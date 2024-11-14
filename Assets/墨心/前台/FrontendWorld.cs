@@ -11,7 +11,7 @@ namespace 墨心{
         }
         public void ShowPlayer(Player player){
             // 创建一个新的 GameObject 用来显示人物
-            GameObject playerObj = new GameObject("Player");
+            GameObject playerObj = new GameObject("Player2");
 
             // 将玩家对象的位置设置为玩家的坐标
             playerObj.transform.position = player.Position;

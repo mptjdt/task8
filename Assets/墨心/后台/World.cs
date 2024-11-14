@@ -13,7 +13,7 @@ namespace 墨心{
         public Player Player { get; set; }
 
     }
-    public class Player : MonoBehaviour {
+    public class Player  {
         public Vector2 Position { get; set; }
         public float moveSpeed {get;set;}//移动速度
         public float rotationSpeed { get; set; }//旋转速度
@@ -31,7 +31,7 @@ namespace 墨心{
             return world;  // 返回初始化后的 World 对象
         }
         // 静态方法代替构造函数，并返回 Player 实例
-        public static Player InitializePlayer(float movespeed,float rotationspeed){
+        public static Player InitializePlayer(float movespeed, float rotationspeed){
             Player player = new Player();  // 创建新的 Player 实例
             player.Position = new Vector2(0, 0);  // 初始化位置
             player.moveSpeed = movespeed;

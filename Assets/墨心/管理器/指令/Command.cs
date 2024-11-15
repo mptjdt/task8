@@ -22,6 +22,7 @@ namespace 墨心{
         public static void BindKeyCommands(){
             // 检测WASD按键并调用对应的指令方法
             if (Input.GetKey(KeyCode.W)){
+                Debug.Log("w");  // 输出变量 w 的值
                 Command.CommandW();
             }
             if (Input.GetKey(KeyCode.A)){

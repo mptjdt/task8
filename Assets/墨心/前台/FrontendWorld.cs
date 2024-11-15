@@ -21,6 +21,9 @@ namespace 墨心{
             spriteRenderer.sprite = GameManager.LoadSprite("player1");  // 设置人物精灵
             spriteRenderer.sortingOrder = 1;  // 人物的排序顺序，较高的值显示在上方
 
+            // 根据玩家的旋转角度更新角色的旋转
+            playerObj.transform.rotation = Quaternion.Euler(0, 0, player.Rotation);  // 将旋转应用到 GameObject
+
         }
 
     }

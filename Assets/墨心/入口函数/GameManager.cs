@@ -35,7 +35,7 @@ namespace 墨心{
                     FrontendInstance.CreateTileUI(x, y, WorldInstance.Grid[x, y]);  // 传递 TileInfo
                 }
             }
-            FrontendInstance.ShowPlayer(WorldInstance.Player);//创建人物
+             FrontendInstance.playerobj=FrontendInstance.ShowPlayer(WorldInstance.Player);//创建人物
         }
     }
 

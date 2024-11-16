@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 namespace 墨心{
     public class FrontendWorld : MonoBehaviour{
+        public GameObject playerobj;
         // 创建特定坐标的地块 UI
         public void CreateTileUI(int x, int y, TileInfo tileInfo){
             GameObject tileObj = new GameObject("Tile_" + x + "_" + y);  // 创建一个新的 GameObject，命名为 "Tile_x_y"
@@ -9,9 +10,9 @@ namespace 墨心{
             // 加载精灵并设置到 SpriteRenderer 上
             tileObj.AddComponent<SpriteRenderer>().sprite = GameManager.LoadSprite(tileInfo.SoilType);  // 添加 SpriteRenderer 组件并直接设置精灵
         }
-        public void ShowPlayer(Player player){
+        public GameObject ShowPlayer(Player player){
             // 创建一个新的 GameObject 用来显示人物
-            GameObject playerObj = new GameObject("Player2");
+            GameObject playerObj = new GameObject("Player");
 
             // 将玩家对象的位置设置为玩家的坐标
             playerObj.transform.position = player.Position;
@@ -23,7 +24,7 @@ namespace 墨心{
 
             // 根据玩家的旋转角度更新角色的旋转
             playerObj.transform.rotation = Quaternion.Euler(0, 0, player.Rotation);  // 将旋转应用到 GameObject
-
+            return playerObj;
         }
 
     }

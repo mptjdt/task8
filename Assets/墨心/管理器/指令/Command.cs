@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using static 墨心.GameManager;
 namespace 墨心{
 
@@ -26,15 +25,19 @@ namespace 墨心{
             // 检测WASD按键并调用对应的指令方法
             if (Input.GetKey(KeyCode.W)){
                 Command.CommandW();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
             if (Input.GetKey(KeyCode.A)){
                 Command.CommandA();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
             if (Input.GetKey(KeyCode.S)){
                 Command.CommandS();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
             if (Input.GetKey(KeyCode.D)){
                 Command.CommandD();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
         }
     }

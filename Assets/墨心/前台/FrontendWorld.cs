@@ -42,5 +42,11 @@ namespace 墨心{
         }
 
     }
+    public static partial class GameManager{
+        public static void 修改角色贴图(Vector2 position, float rotation, FrontendWorld frontendWorld){
+            frontendWorld.playerobj.transform.position = position;
+            frontendWorld.playerobj.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        }
+    }
 }
 

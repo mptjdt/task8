@@ -3,14 +3,26 @@ using static 墨心.GameManager;
 
 namespace 墨心{
     public class PlayerController : MonoBehaviour{
-        // 每帧更新玩家位置的逻辑
-        void Start(){
-            // 确保订阅事件
-            GameManager.订阅事件();
+        public void Start(){
+            订阅事件();
         }
-
-        void Update(){
-            GameManager.BindKeyCommands();  // 调用 GameManager 中的方法，检查输入并更新玩家位置
+        public void Update(){
+            if (Input.GetKey(KeyCode.W)) {
+                Command.CommandW();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation, FrontendInstance);
+            }
+            if (Input.GetKey(KeyCode.A)) {
+                Command.CommandA();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation, FrontendInstance);
+            }
+            if (Input.GetKey(KeyCode.S)) {
+                Command.CommandS();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation, FrontendInstance);
+            }
+            if (Input.GetKey(KeyCode.D)) {
+                Command.CommandD();
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation, FrontendInstance);
+            }
         }
     }
 }

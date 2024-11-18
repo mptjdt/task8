@@ -44,12 +44,6 @@ namespace 墨心{
             player.rotationSpeed = rotationspeed;
             return player;  // 返回 Player 实例
         }
-        public static void 角色位置改变(World world, Vector2 positionChange, float targetRotation){
-            // 更新玩家位置
-            world.Player.Position += positionChange;
-            // 更新玩家旋转角度
-            world.Player.Rotation = Mathf.LerpAngle(world.Player.Rotation, targetRotation, Time.deltaTime * world.Player.rotationSpeed);
-        }
         public static List<TileInfo> 获取当前地块(Vector2 screenPosition, World world){
             // 使用摄像头将屏幕坐标转换为世界坐标
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);

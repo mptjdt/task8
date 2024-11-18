@@ -3,7 +3,6 @@ using System.Diagnostics;
 using UnityEngine;
 namespace 墨心{
     public class FrontendWorld : MonoBehaviour{
-        public GameObject playerobj;
         public void CreateTileUI(int x, int y, List<TileInfo> tileInfoList){
             foreach (var tileInfo in tileInfoList){
                 GameObject tileObj = new GameObject("Tile_" + x + "_" + y);  // 创建一个新的 GameObject，命名为 "Tile_x_y"

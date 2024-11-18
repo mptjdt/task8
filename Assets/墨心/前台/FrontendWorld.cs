@@ -22,9 +22,7 @@ namespace 墨心{
                 }
             }
         }
-
-
-        public GameObject ShowPlayer(Player player){
+        public GameObject CreatePlayer(Player player){
             // 创建一个新的 GameObject 用来显示人物
             GameObject playerObj = new GameObject("Player");
 
@@ -38,14 +36,14 @@ namespace 墨心{
 
             // 根据玩家的旋转角度更新角色的旋转
             playerObj.transform.rotation = Quaternion.Euler(0, 0, player.Rotation);  // 将旋转应用到 GameObject
+            playerObj.AddComponent<PlayerController>();
             return playerObj;
         }
-
     }
     public static partial class GameManager{
         public static void 修改角色贴图(Vector2 position, float rotation, FrontendWorld frontendWorld){
-            frontendWorld.playerobj.transform.position = position;
-            frontendWorld.playerobj.transform.rotation = Quaternion.Euler(0, 0, rotation);
+            frontendWorld.gameObject.transform.position = position;
+            frontendWorld.gameObject.transform.rotation = Quaternion.Euler(0, 0, rotation);
         }
     }
 }

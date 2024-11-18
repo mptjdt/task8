@@ -8,9 +8,9 @@ namespace 墨心{
         // 每个地块存储一个 List<TileInfo>，即每个地块有多个 TileInfo
         public List<TileInfo>[,] Grid { get; set; }
         // 宽度属性
-        public int Width { get { return Grid.GetLength(0); } }
+        public int Width => Grid.GetLength(0);
         // 高度属性
-        public int Height { get { return Grid.GetLength(1); } }
+        public int Height => Grid.GetLength(1);
         // 将 Player 作为 World 类的成员
         public Player Player { get; set; }
 

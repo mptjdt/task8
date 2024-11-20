@@ -1,23 +1,23 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
 
-namespace Ä«ĞÄ {
+namespace å¢¨å¿ƒ {
     public class Player {
         public Vector2 Position { get; set; }
-        public float Rotation { get; set; } // µ±Ç°Ğı×ª½Ç¶È£¨ÒÔ¶ÈÎªµ¥Î»£©
-        public float moveSpeed { get; set; }//ÒÆ¶¯ËÙ¶È
-        public float rotationSpeed { get; set; }//Ğı×ªËÙ¶È
+        public float Rotation { get; set; } // å½“å‰æ—‹è½¬è§’åº¦ï¼ˆä»¥åº¦ä¸ºå•ä½ï¼‰
+        public float moveSpeed { get; set; }//ç§»åŠ¨é€Ÿåº¦
+        public float rotationSpeed { get; set; }//æ—‹è½¬é€Ÿåº¦
     }
     public static partial class GameManager {
-        // ¾²Ì¬·½·¨´úÌæ¹¹Ôìº¯Êı£¬²¢·µ»Ø Player ÊµÀı
+        // é™æ€æ–¹æ³•ä»£æ›¿æ„é€ å‡½æ•°ï¼Œå¹¶è¿”å› Player å®ä¾‹
         public static Player InitializePlayer(float movespeed, float rotationspeed) {
-            Player player = new Player();  // ´´½¨ĞÂµÄ Player ÊµÀı
-            player.Position = new Vector2(0, 0);  // ³õÊ¼»¯Î»ÖÃ
-            player.Rotation = 0;//³õÊ¼¹Ì¶¨Îª0
+            Player player = new Player();  // åˆ›å»ºæ–°çš„ Player å®ä¾‹
+            player.Position = new Vector2(0, 0);  // åˆå§‹åŒ–ä½ç½®
+            player.Rotation = 0;//åˆå§‹å›ºå®šä¸º0
             player.moveSpeed = movespeed;
             player.rotationSpeed = rotationspeed;
-            return player;  // ·µ»Ø Player ÊµÀı
+            return player;  // è¿”å› Player å®ä¾‹
         }
     }
 }

@@ -6,6 +6,7 @@ namespace 墨心{
     public static partial class GameManager{
         public static World WorldInstance { get; private set; }  // 存储后台世界的实例
         public static FrontendWorld FrontendInstance { get; private set; }  // 存储前台世界的实例
+        public static GameObject PlayerObj;//持久化保存人物
        
         // 主方法，程序入口
         public static void Mainstart(){
@@ -34,7 +35,7 @@ namespace 墨心{
                     FrontendInstance.CreateTileUI(x, y, WorldInstance.Grid[x, y]);  // 传递 TileInfo
                 }
             }
-            FrontendInstance.CreatePlayer(WorldInstance.Player);//创建人物
+            PlayerObj=FrontendInstance.CreatePlayer(WorldInstance.Player);//创建人物
         }
         public static void CreateInfoPanel(){
             // 动态创建一个 GameObject 来承载 InfoPanel 组件

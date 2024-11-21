@@ -8,6 +8,7 @@ namespace 墨心 {
         public List<TileInfo>[,] Grid { get; set; }// 每个地块存储一个 List<TileInfo>，即每个地块有多个 TileInfo
         public int Width => Grid.GetLength(0);// 宽度属性       
         public int Height => Grid.GetLength(1);// 高度属性
+        public Player Player { get; set; }//人物
     }
     public static partial class GameManager {
         // 静态方法，初始化地块网格并返回初始化后的 World 对象
@@ -17,7 +18,7 @@ namespace 墨心 {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     world.Grid[x, y] = new List<TileInfo>();  // 每个地块初始化为空的 List<TileInfo>
-                    创建沙漠地块(world.Grid[x, y]);
+                    world.Grid[x, y]=创建沙漠地块(world.Grid[x, y]);
                 }
             }
             随机生成矿石(world, 矿石数量);
@@ -37,7 +38,7 @@ namespace 墨心 {
             Vector2Int? initialPosition = GetRandomDesertPosition(world);// 获取随机的沙漠地块作为起始点
             if (initialPosition == null) return; // 如果没有沙漠地块，退出
             HashSet<Vector2Int> visited = new HashSet<Vector2Int> { initialPosition.Value };
-            world.Grid[initialPosition.Value.x, initialPosition.Value.y] = GameManager.创建石头地块(world.Grid[initialPosition.Value.x, initialPosition.Value.y]);
+            world.Grid[initialPosition.Value.x, initialPosition.Value.y] = 创建石头地块(world.Grid[initialPosition.Value.x, initialPosition.Value.y]);
             int generatedCount = 1; // 已生成矿石的数量，初始为1
             // 逐步扩展生成矿石
             while (generatedCount < times) {

@@ -20,19 +20,19 @@ namespace 墨心 {
         public void Update() {
             if (Input.GetKey(KeyCode.W)) {
                 Command.CommandW();
-                Event.NotifyPlayerPositionUpdated(PlayerInstance.Position, PlayerInstance.Rotation);
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
             if (Input.GetKey(KeyCode.A)) {
                 Command.CommandA();
-                Event.NotifyPlayerPositionUpdated(PlayerInstance.Position, PlayerInstance.Rotation);
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
             if (Input.GetKey(KeyCode.S)) {
                 Command.CommandS();
-                Event.NotifyPlayerPositionUpdated(PlayerInstance.Position, PlayerInstance.Rotation);
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
             if (Input.GetKey(KeyCode.D)) {
                 Command.CommandD();
-                Event.NotifyPlayerPositionUpdated(PlayerInstance.Position, PlayerInstance.Rotation);
+                Event.NotifyPlayerPositionUpdated(WorldInstance.Player.Position, WorldInstance.Player.Rotation);
             }
         }
     }

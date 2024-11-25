@@ -18,12 +18,13 @@ namespace 墨心 {
     //流程函数
     public static partial class GameManager {
         public static void 创建后台世界() {
-            WorldInstance = InitializeWorld(10, 10, 10);
+            WorldInstance = InitializeWorld(10, 10);
             WorldInstance.Player = InitializePlayer(5f, 5f);
         }
         public static void 创建前台世界() {
             FrontendInstance = new GameObject("FrontendWorld").AddComponent<FrontendWorld>();
             PlayerControllerInstance=new GameObject("PlayController").AddComponent<PlayerController>();
+            PanelInstance = new GameObject("InfoPanel").AddComponent<InfoPanel>();
         }
         public static void CreateWorld() {
             for (int x = 0; x < WorldInstance.Width; x++){
@@ -34,8 +35,7 @@ namespace 墨心 {
             PlayerControllerInstance.PlayerObj = PlayerControllerInstance.CreatePlayer(WorldInstance.Player);//创建人物
         }
         public static void CreateInfoPanel() {
-            PanelInstance = new GameObject("InfoPanel").AddComponent<InfoPanel>();
-            PanelInstance.CreateInfoPanel();// 调用 InfoPanel 的创建方法
+            PanelInstance.panel=PanelInstance.CreateInfoPanel();// 调用 InfoPanel 的创建方法
         }
     }
 }

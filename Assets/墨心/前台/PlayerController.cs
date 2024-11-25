@@ -15,7 +15,7 @@ namespace 墨心 {
             return playerObj;
         }
         public void Start() {
-            订阅事件();
+            订阅人物移动事件();
         }
         public void Update() {
             if (Input.GetKey(KeyCode.W)) {

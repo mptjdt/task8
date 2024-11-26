@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using static 墨心.GameManager;
 
 namespace 墨心 {
@@ -18,7 +15,8 @@ namespace 墨心 {
             world.Grid = new TileInfo[width, height];  // 根据指定大小创建网格
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    world.Grid[x, y]=创建沙漠地块();
+                    world.Grid[x, y] = new TileInfo(); // 初始化 TileInfo 实例
+                    world.Grid[x, y].土质层=创建沙漠地块();
                 }
             }
             return world;  // 返回初始化后的 World 对象

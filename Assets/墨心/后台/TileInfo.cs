@@ -2,22 +2,18 @@
 
 namespace 墨心 {
     public class TileInfo {
-        public string SoilType { get; set; }// 地块的土质类型字段
-        public int 数量 { get; set; }
+        public 土质类 土质层 { get; set; }
+        public 矿石类 矿石层 { get; set; }
+        public 地板类 地板层 { get; set; }
+        public 建筑类 建筑层 { get; set; }
+        public 悬浮类 悬浮层 { get; set; }
     }
     public static partial class GameManager {
-        public static TileInfo 创建沙漠地块() {
-            TileInfo tileInfo= new TileInfo();
-            tileInfo.SoilType = "desert";
-            tileInfo.数量 = -1;          
-            return tileInfo;  
+        public static string 获取土质类型字符串(TileInfo tileinfo) {
+            return tileinfo.土质层.类型.ToString();
         }
-        public static TileInfo 创建石头地块() {
-            TileInfo tileInfo = new TileInfo();
-            tileInfo.SoilType = "stone";
-            tileInfo.数量 = 3;
-            return tileInfo;  
+        public static string 获取矿石类型字符串(TileInfo tileinfo) {
+            return tileinfo.矿石层.类型.ToString();
         }
-        
     }
 }

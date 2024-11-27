@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace 墨心 {
     public class InfoPanel : MonoBehaviour {
         public GameObject panel;
-        public GameObject CreateInfoPanel() {           
+        public GameObject CreateInfoPanel() {
             Canvas canvas = new GameObject("Canvas").AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;// 创建 Canvas 并设置渲染模式           
             GameObject panel = new GameObject("Panel");
@@ -25,23 +25,22 @@ namespace 墨心 {
             panel.transform.SetParent(canvas.transform, false);// 设置面板的父物体为 Canvas
             return panel;
         }
-
         // 显示信息面板
         public void ShowInfoPanel() {
-            if (panel != null){
+            if (panel != null) {
                 panel.SetActive(true); // 激活面板
             }
         }
         // 隐藏信息面板
         public void HideInfoPanel() {
-            if (panel != null){
+            if (panel != null) {
                 panel.SetActive(false); // 隐藏面板
             }
         }
     }
     public static partial class GameManager {
         public static void 修改信息面板(string SoilType, int 数量) {
-            PanelInstance.panel.GetComponentInChildren<Text>().text = $"地块类型: {SoilType}\n数量: {数量}";
+            信息面板实例.panel.GetComponentInChildren<Text>().text = $"地块类型: {SoilType}\n数量: {数量}";
         }
     }
 }

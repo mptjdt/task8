@@ -15,9 +15,9 @@
             return 土质层;
         }
         public static void 初始化土质层() {
-            for (int x = 0; x < WorldInstance.Width; x++) {
-                for (int y = 0; y < WorldInstance.Height; y++) {
-                    WorldInstance.Grid[x, y].土质层 = 创建沙漠地块();
+            for (int x = 0; x < 后台实例.Width; x++) {
+                for (int y = 0; y < 后台实例.Height; y++) {
+                    后台实例.Grid[x, y].土质层 = 创建沙漠地块();
                 }
             }
         }

@@ -5,6 +5,24 @@ using UnityEngine;
 
 namespace 墨心 {
     public class FrontendWorld : MonoBehaviour {
+        public void Start() {
+            订阅地块点击事件();
+        }
+        public void Update() {
+            if (Input.GetMouseButtonDown(1)) {
+                Command.Command鼠标右键();
+            }
+            if (Input.GetMouseButtonDown(0)) {
+                Vector2 mousePosition = Input.mousePosition;
+                TileInfo 当前地块 = 获取当前地块(mousePosition);
+                if (当前地块.矿石层 != null) {
+                    Event.触发地块点击(获取矿石类型字符串(当前地块), 当前地块.矿石层.数量);
+                }
+                if (当前地块.矿石层 == null && 当前地块.土质层 != null) {
+                    Event.触发地块点击(获取土质类型字符串(当前地块), 当前地块.土质层.数量);
+                }
+            }
+        }
         public void 创建土质层(int x, int y, TileInfo tileInfo) {
             if (tileInfo.土质层 != null) {
                 GameObject tileObj = new GameObject("土质层_" + x + "_" + y);
@@ -26,29 +44,8 @@ namespace 墨心 {
             if (tileInfo.矿石对象 != null) {
                 Destroy(tileInfo.矿石对象);
                 tileInfo.矿石层 = null;
-                tileInfo.矿石对象=null;
-            }
-        }
-
-        public void Start() {
-            订阅地块点击事件();
-        }
-        public void Update() {
-            if (Input.GetMouseButtonDown(1)) {
-                Command.Command鼠标右键();
-            }
-            if (Input.GetMouseButtonDown(0)) {
-                Vector2 mousePosition = Input.mousePosition;
-                TileInfo 当前地块 = 获取当前地块(mousePosition);
-                if (当前地块.矿石层 != null) {
-                    Event.触发地块点击(获取矿石类型字符串(当前地块), 当前地块.矿石层.数量);
-                }
-                if (当前地块.矿石层 == null&&当前地块.土质层!=null) {
-                    Event.触发地块点击(获取土质类型字符串(当前地块), 当前地块.土质层.数量);
-                }
+                tileInfo.矿石对象 = null;
             }
         }
     }
 }
-
-

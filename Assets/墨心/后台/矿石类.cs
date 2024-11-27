@@ -19,18 +19,18 @@ namespace 墨心 {
         }
         public static void 初始化矿石层(int 单个矿堆矿石数, int 矿堆个数) {
             for (int i = 0; i < 矿堆个数; i++) {
-                int 初始点横坐标 = UnityEngine.Random.Range(0, WorldInstance.Width);
-                int 初始点纵坐标 = UnityEngine.Random.Range(0, WorldInstance.Height);
-                while (WorldInstance.Grid[初始点横坐标, 初始点纵坐标].矿石层 != null) {
-                    初始点横坐标 = UnityEngine.Random.Range(0, WorldInstance.Width);
-                    初始点纵坐标 = UnityEngine.Random.Range(0, WorldInstance.Height);
+                int 初始点横坐标 = UnityEngine.Random.Range(0, 后台实例.Width);
+                int 初始点纵坐标 = UnityEngine.Random.Range(0, 后台实例.Height);
+                while (后台实例.Grid[初始点横坐标, 初始点纵坐标].矿石层 != null) {
+                    初始点横坐标 = UnityEngine.Random.Range(0, 后台实例.Width);
+                    初始点纵坐标 = UnityEngine.Random.Range(0, 后台实例.Height);
                 }
                 传染矿石(初始点横坐标, 初始点纵坐标, 单个矿堆矿石数);
             }
         }
         public static void 传染矿石(int x, int y, int 剩余传染次数) {
-            if (剩余传染次数 <= 0 || x < 0 || y < 0 || x >= WorldInstance.Width || y >= WorldInstance.Height) return;
-            WorldInstance.Grid[x, y].矿石层 = 创建铜矿地块();
+            if (剩余传染次数 <= 0 || x < 0 || y < 0 || x >= 后台实例.Width || y >= 后台实例.Height) return;
+            后台实例.Grid[x, y].矿石层 = 创建铜矿地块();
             剩余传染次数--;
             List<(int, int)> 邻居方向 = new List<(int, int)> {
               (0, 1),  // 上

@@ -19,12 +19,34 @@ namespace 墨心 {
                 tileObj.transform.position = new Vector3(x, y, 0);
                 tileObj.AddComponent<SpriteRenderer>().sprite = LoadSprite(获取矿石类型字符串(tileInfo));
                 tileObj.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                tileInfo.矿石对象 = tileObj;//持久储存，方便查找与删除
             }
         }
+        public void 删除矿石对象(TileInfo tileInfo) {
+            if (tileInfo.矿石对象 != null) {
+                Destroy(tileInfo.矿石对象);
+                tileInfo.矿石层 = null;
+                tileInfo.矿石对象=null;
+            }
+        }
+
         public void Start() {
             订阅地块点击事件();
         }
         public void Update() {
+            if (Input.GetMouseButtonDown(1)) {
+                Command.Command鼠标右键();
+            }
+            if (Input.GetMouseButtonDown(0)) {
+                Vector2 mousePosition = Input.mousePosition;
+                TileInfo 当前地块 = 获取当前地块(mousePosition);
+                if (当前地块.矿石层 != null) {
+                    Event.触发地块点击(获取矿石类型字符串(当前地块), 当前地块.矿石层.数量);
+                }
+                if (当前地块.矿石层 == null&&当前地块.土质层!=null) {
+                    Event.触发地块点击(获取土质类型字符串(当前地块), 当前地块.土质层.数量);
+                }
+            }
         }
     }
 }

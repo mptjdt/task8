@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace 墨心 {
     public class TileInfo {
@@ -7,6 +8,7 @@ namespace 墨心 {
         public 地板类 地板层 { get; set; }
         public 建筑类 建筑层 { get; set; }
         public 悬浮类 悬浮层 { get; set; }
+        public GameObject 矿石对象;
     }
     public static partial class GameManager {
         public static string 获取土质类型字符串(TileInfo tileinfo) {

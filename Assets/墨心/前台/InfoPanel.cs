@@ -41,7 +41,7 @@ namespace 墨心 {
     }
     public static partial class GameManager {
         public static void 修改信息面板(string SoilType, int 数量) {
-            PanelInstance.panel.GetComponentInChildren<Text>().text = $"土壤类型: {SoilType}\n数量: {数量}";
+            PanelInstance.panel.GetComponentInChildren<Text>().text = $"地块类型: {SoilType}\n数量: {数量}";
         }
     }
 }

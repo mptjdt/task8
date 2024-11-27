@@ -14,7 +14,7 @@ namespace 墨心 {
         public static 矿石类 创建铜矿地块() {
             矿石类 矿石层 = new 矿石类();
             矿石层.类型 = 矿石类.地块类型.铜矿;
-            矿石层.数量 = -1;
+            矿石层.数量 = 3;
             return 矿石层;
         }
         public static void 初始化矿石层(int 单个矿堆矿石数, int 矿堆个数) {

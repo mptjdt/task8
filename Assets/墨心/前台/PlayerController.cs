@@ -6,11 +6,10 @@ namespace 墨心 {
         public GameObject PlayerObj;//持久化保存前台人物
         public GameObject CreatePlayer(Player player){           
             GameObject playerObj = new GameObject("Player");   
-            playerObj.transform.position = player.Position; 
-            SpriteRenderer spriteRenderer = playerObj.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = GameManager.LoadSprite("player1"); 
-            spriteRenderer.sortingOrder = 2; 
+            playerObj.transform.position = player.Position;
             playerObj.transform.rotation = Quaternion.Euler(0, 0, player.Rotation);
+            playerObj.AddComponent<SpriteRenderer>().sprite = LoadSprite("player1");
+            playerObj.GetComponent<SpriteRenderer>().sortingOrder = 6;          
             playerObj.AddComponent<PlayerController>();
             return playerObj;
         }

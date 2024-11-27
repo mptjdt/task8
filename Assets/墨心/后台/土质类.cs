@@ -14,5 +14,12 @@
             土质层.数量 = -1;
             return 土质层;
         }
+        public static void 初始化土质层() {
+            for (int x = 0; x < WorldInstance.Width; x++) {
+                for (int y = 0; y < WorldInstance.Height; y++) {
+                    WorldInstance.Grid[x, y].土质层 = 创建沙漠地块();
+                }
+            }
+        }
     }
 }

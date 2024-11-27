@@ -20,6 +20,8 @@ namespace 墨心 {
         public static void 创建后台世界() {
             WorldInstance = InitializeWorld(10, 10);
             WorldInstance.Player = InitializePlayer(5f, 5f);
+            初始化土质层();
+            初始化矿石层(3,3);
         }
         public static void 创建前台世界() {
             FrontendInstance = new GameObject("FrontendWorld").AddComponent<FrontendWorld>();
@@ -28,14 +30,15 @@ namespace 墨心 {
         }
         public static void CreateWorld() {
             for (int x = 0; x < WorldInstance.Width; x++){
-                for (int y = 0; y < WorldInstance.Height; y++){
-                    FrontendInstance.CreateTileUI(x, y, WorldInstance.Grid[x, y]);  // 传递 TileInfo
+                for (int y = 0; y < WorldInstance.Height; y++){                   
+                    FrontendInstance.创建土质层(x, y, WorldInstance.Grid[x, y]);
+                    FrontendInstance.创建矿石层(x, y, WorldInstance.Grid[x, y]);
                 }
             }
-            PlayerControllerInstance.PlayerObj = PlayerControllerInstance.CreatePlayer(WorldInstance.Player);//创建人物
+            PlayerControllerInstance.PlayerObj = PlayerControllerInstance.CreatePlayer(WorldInstance.Player);
         }
         public static void CreateInfoPanel() {
-            PanelInstance.panel=PanelInstance.CreateInfoPanel();// 调用 InfoPanel 的创建方法
+            PanelInstance.panel=PanelInstance.CreateInfoPanel();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace 墨心 {
         public GameObject CreatePlayer(Player player) {
             GameObject playerObj = new GameObject("Player");
             playerObj.transform.position = player.Position;
-            playerObj.transform.rotation = Quaternion.Euler(0, 0, player.Rotation);
+            playerObj.transform.rotation = Quaternion.Euler(0, 0, player.旋转角度);
             playerObj.AddComponent<SpriteRenderer>().sprite = LoadSprite("player1");
             playerObj.GetComponent<SpriteRenderer>().sortingOrder = 6;
             playerObj.AddComponent<PlayerController>();
@@ -19,19 +19,19 @@ namespace 墨心 {
         public void Update() {
             if (Input.GetKey(KeyCode.W)) {
                 Command.CommandW();
-                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.Rotation);
+                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.旋转角度);
             }
             if (Input.GetKey(KeyCode.A)) {
                 Command.CommandA();
-                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.Rotation);
+                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.旋转角度);
             }
             if (Input.GetKey(KeyCode.S)) {
                 Command.CommandS();
-                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.Rotation);
+                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.旋转角度);
             }
             if (Input.GetKey(KeyCode.D)) {
                 Command.CommandD();
-                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.Rotation);
+                Event.NotifyPlayerPositionUpdated(后台实例.Player.Position, 后台实例.Player.旋转角度);
             }
         }
     }

@@ -9,21 +9,21 @@ namespace 墨心 {
         public static InfoPanel 信息面板实例;
         // 主方法，程序入口
         public static void Mainstart() {
-            创建后台世界和人物();
-            创建前台世界();
+            初始化后台世界和人物();
+            初始化前台();
             创建世界流程();         
             创建信息面板流程();
         }
     }
     //流程函数
     public static partial class GameManager {
-        public static void 创建后台世界和人物() {
-            后台实例 = InitializeWorld(10, 10);
-            后台实例.Player = InitializePlayer(5f, 5f);
+        public static void 初始化后台世界和人物() {
+            后台实例 = World.InitializeWorld(10, 10);
+            后台实例.Player = Player.InitializePlayer(5f, 5f);
             初始化土质层();
             初始化矿石层(3, 3);
         }
-        public static void 创建前台世界() {
+        public static void 初始化前台() {
             前台世界实例 = new GameObject("FrontendWorld").AddComponent<FrontendWorld>();
             前台人物实例 = new GameObject("PlayController").AddComponent<PlayerController>();
             信息面板实例 = new GameObject("InfoPanel").AddComponent<InfoPanel>();

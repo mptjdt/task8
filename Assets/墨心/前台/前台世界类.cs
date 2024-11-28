@@ -4,7 +4,7 @@ using static 墨心.GameManager;
 using UnityEngine;
 
 namespace 墨心 {
-    public class FrontendWorld : MonoBehaviour {
+    public class 前台世界类 : MonoBehaviour {
         public void Start() {
             订阅地块点击事件();
         }

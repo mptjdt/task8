@@ -5,13 +5,13 @@ namespace 墨心 {
     public class 前台人物类 : MonoBehaviour {
         public GameObject PlayerObj;//持久化保存前台人物
         public GameObject CreatePlayer(Player player) {
-            GameObject playerObj = new GameObject("Player");
-            playerObj.transform.position = player.Position;
-            playerObj.transform.rotation = Quaternion.Euler(0, 0, player.旋转角度);
-            playerObj.AddComponent<SpriteRenderer>().sprite = LoadSprite("player1");
-            playerObj.GetComponent<SpriteRenderer>().sortingOrder = 6;
-            playerObj.AddComponent<前台人物类>();
-            return playerObj;
+            var A = new GameObject("Player");
+            A.transform.position = player.Position;
+            A.transform.rotation = Quaternion.Euler(0, 0, player.旋转角度);
+            A.AddComponent<SpriteRenderer>().sprite = LoadSprite("player1");
+            A.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            A.AddComponent<前台人物类>();
+            return A;
         }
         public void Start() {
             订阅人物移动事件();

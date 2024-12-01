@@ -37,7 +37,7 @@ namespace 墨心 {
             前台人物.PlayerObj = 前台人物.CreatePlayer(后台世界.Player);
         }
         public static void 创建信息面板流程() {
-            信息面板.panel = 信息面板.CreateInfoPanel();
+            信息面板.panel = 信息面板.创建信息面板();
         }
     }
 }

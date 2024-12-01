@@ -4,7 +4,11 @@ using static 墨心.GameManager;
 using UnityEngine;
 
 namespace 墨心 {
+    /// <summary>
+    /// Todo：前台类中不该出现TileInfo！！！！
+    /// </summary>
     public class 前台世界类 : MonoBehaviour {
+        public Dictionary<Vector2Int, GameObject> 所有地块;
         public void Start() {
             订阅地块点击事件();
         }

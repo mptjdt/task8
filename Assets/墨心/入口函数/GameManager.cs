@@ -28,10 +28,11 @@ namespace 墨心 {
             信息面板 = MainCamera.AddComponent<信息面板类>();
         }
         public static void 创建世界流程() {
+            前台世界.创建前台世界(后台世界.Width,后台世界.Height);
             for (int i = 0; i < 后台世界.Width; i++) {
                 for (int j = 0; j < 后台世界.Height; j++) {
-                    前台世界.创建土质层(i, j, 后台世界.Grid[i, j]);
-                    前台世界.创建矿石层(i, j, 后台世界.Grid[i, j]);
+                    前台世界.Grid[i, j].土质对象 = 前台世界.创建土质层(i, j, 后台世界.Grid[i, j]);
+                    前台世界.Grid[i, j].矿石对象 = 前台世界.创建矿石层(i, j, 后台世界.Grid[i, j]);
                 }
             }
             前台人物.PlayerObj = 前台人物.CreatePlayer(后台世界.Player);

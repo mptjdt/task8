@@ -27,29 +27,54 @@ namespace 墨心 {
                 }
             }
         }
-        public void 创建土质层(int x, int y, TileInfo tileInfo) {
+        public void 创建前台世界(int 宽度, int 高度) {
+            Grid = new 前台地块类[宽度, 高度];
+            for (int i = 0; i < 宽度; i++) {
+                for (int j = 0; j < 高度; j++) {
+                    Grid[i, j] = new 前台地块类();
+                }
+            }
+        }
+        public GameObject 创建土质层(int x, int y, TileInfo tileInfo) {
             if (tileInfo.土质层 != null) {
                 GameObject tileObj = new GameObject("土质层_" + x + "_" + y);
                 tileObj.transform.position = new Vector3(x, y, 0);
                 tileObj.AddComponent<SpriteRenderer>().sprite = LoadSprite(获取土质类型字符串(tileInfo));
                 tileObj.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                return tileObj;
             }
+            return null;
         }
-        public void 创建矿石层(int x, int y, TileInfo tileInfo) {
+        public GameObject 创建矿石层(int x, int y, TileInfo tileInfo) {
             if (tileInfo.矿石层 != null) {
                 GameObject tileObj = new GameObject("矿石层_" + x + "_" + y);
                 tileObj.transform.position = new Vector3(x, y, 0);
                 tileObj.AddComponent<SpriteRenderer>().sprite = LoadSprite(获取矿石类型字符串(tileInfo));
                 tileObj.GetComponent<SpriteRenderer>().sortingOrder = 1;
-                tileInfo.矿石对象 = tileObj;//持久储存，方便查找与删除
+                return tileObj;
+            }
+            return null;
+        }
+        public void 删除矿石对象(TileInfo tileinfo, 前台地块类 前台地块) {
+            if (前台地块.矿石对象 != null) {
+                Destroy(前台地块.矿石对象);
+                tileinfo.矿石层 = null;
+                前台地块.矿石对象 = null;
             }
         }
-        public void 删除矿石对象(TileInfo tileInfo) {
-            if (tileInfo.矿石对象 != null) {
-                Destroy(tileInfo.矿石对象);
-                tileInfo.矿石层 = null;
-                tileInfo.矿石对象 = null;
+    }
+    public static partial class GameManager {
+        public static 前台地块类 获取当前地块对象(Vector2 screenPosition) {
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            Vector2 worldPos = new Vector2(worldPosition.x, worldPosition.y);// 使用摄像头将屏幕坐标转换为世界坐标
+            int gridX = Mathf.FloorToInt(worldPos.x);  // 取整转换为网格坐标
+            int gridY = Mathf.FloorToInt(worldPos.y);  // 取整转换为网格坐标          
+            gridX = Mathf.Clamp(gridX, 0, 前台世界.Width - 1);
+            gridY = Mathf.Clamp(gridY, 0, 前台世界.Height - 1); // 将世界坐标转换为网格坐标                                                                     // 判断是否在有效地块范围内
+            if (gridX < 0 || gridX >= 前台世界.Width || gridY < 0 || gridY >= 前台世界.Height) {
+                return null;  // 如果超出范围，返回 null 或其他表示无效的值
             }
+            return 前台世界.Grid[gridX, gridY];// 根据网格坐标获取当前地块并返回
         }
     }
 }

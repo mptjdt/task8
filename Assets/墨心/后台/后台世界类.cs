@@ -14,6 +14,7 @@ namespace 墨心 {
             for (int i = 0; i < 宽度; i++) {
                 for (int j = 0; j < 高度; j++) {
                     Grid[i, j] = new TileInfo();
+                    Grid[i, j].位置 = new Vector2Int(i, j);
                 }
             }
         }

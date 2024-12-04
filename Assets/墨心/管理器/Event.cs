@@ -11,20 +11,9 @@ namespace 墨心 {
         public static void 触发地块点击(string SoilType, int 数量) {
             地块点击?.Invoke(SoilType, 数量);
         }
-        public static event Action<Vector2Int> 地块采集;
+        public static event Action<Vector2Int> on地块采光;
         public static void 地块采光(Vector2Int X) {
-            地块采集?.Invoke(X);
-        }
-    }
-    public static partial class GameManager {
-        public static void 订阅人物移动事件() {
-            Event.OnPlayerPositionUpdated += 修改角色贴图;
-        }
-        public static void 订阅地块点击事件() {
-            Event.地块点击 += 修改信息面板;
-        }
-        public static void 订阅地块采集事件() {
-            Event.地块采集 += 删除地块对象;
+            on地块采光?.Invoke(X);
         }
     }
 }

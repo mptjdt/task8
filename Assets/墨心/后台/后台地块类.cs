@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace 墨心 {
-    public class TileInfo {
+    public class 后台地块类 {
         public Vector2Int 位置;
         public 土质类 土质层;
         public 矿石类 矿石层;
@@ -22,10 +22,10 @@ namespace 墨心 {
         }
     }
     public static partial class GameManager {
-        public static string 获取土质类型字符串(TileInfo tileinfo) {
+        public static string 获取土质类型字符串(后台地块类 tileinfo) {
             return tileinfo.土质层.类型.ToString();
         }
-        public static string 获取矿石类型字符串(TileInfo tileinfo) {
+        public static string 获取矿石类型字符串(后台地块类 tileinfo) {
             return tileinfo.矿石层.类型.ToString();
         }
     }

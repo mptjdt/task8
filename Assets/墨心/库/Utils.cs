@@ -26,7 +26,7 @@ namespace 墨心 {
             A.fontSize = 14;
             A.text = text;
         }
-        public static GameObject 创建矩形(this Canvas canvas, float 左,float 上,float 宽度,float 高度) {
+        public static GameObject 创建矩形(this Canvas canvas, float 左, float 上, float 宽度, float 高度) {
             var 矩形 = new GameObject("矩形");
             Text text = new GameObject("文本框").AddComponent<Text>();
             var 矩形属性 = 矩形.AddComponent<RectTransform>();
@@ -35,9 +35,9 @@ namespace 墨心 {
             text.transform.SetParent(矩形.transform, false);
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             矩形属性.anchorMin = 矩形属性.anchorMax = new Vector2(1, 1);
-            矩形属性.sizeDelta = new Vector2(Screen.width * 宽度, Screen.height*高度);
+            矩形属性.sizeDelta = new Vector2(Screen.width * 宽度, Screen.height * 高度);
             矩形属性.anchoredPosition = new Vector2(-Screen.width * 左, -Screen.height * 上);
             return 矩形;
         }
     }
-} 
+}

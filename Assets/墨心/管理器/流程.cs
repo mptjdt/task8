@@ -38,8 +38,13 @@ namespace 墨心 {
                     Destroy(删除地块);
                 }
             };
-            Event.地块点击 += (string SoilType, int 数量) => {
-                信息面板.面板.GetComponentInChildren<Text>().text = $"地块类型: {SoilType}\n数量: {数量}";
+            Event.地块点击 += (后台地块类 X, int 数量) => {
+                if (X.矿石层 != null) {
+                    信息面板.面板.GetComponentInChildren<Text>().text = $"地块类型: {获取矿石类型字符串(X)}\n数量: {数量}";
+                }
+                if (X.矿石层 == null &&X.土质层 != null) {
+                    信息面板.面板.GetComponentInChildren<Text>().text = $"地块类型: {获取土质类型字符串(X)}\n数量: {数量}";
+                }
             };
         }
     }

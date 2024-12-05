@@ -17,10 +17,10 @@ namespace 墨心 {
                 Vector2 mousePosition = Input.mousePosition;
                 后台地块类 当前地块 = 获取当前地块(mousePosition);
                 if (当前地块.矿石层 != null) {
-                    Event.触发地块点击(获取矿石类型字符串(当前地块), 当前地块.矿石层.数量);
+                    Event.触发地块点击(当前地块, 当前地块.矿石层.数量);
                 }
                 if (当前地块.矿石层 == null && 当前地块.土质层 != null) {
-                    Event.触发地块点击(获取土质类型字符串(当前地块), -1);
+                    Event.触发地块点击(当前地块, -1);
                 }
             }
         }

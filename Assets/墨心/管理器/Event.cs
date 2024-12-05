@@ -7,9 +7,9 @@ namespace 墨心 {
         public static void NotifyPlayerPositionUpdated(Vector2 position, float rotation) {
             OnPlayerPositionUpdated?.Invoke(position, rotation);//人物移动
         }
-        public static event Action<string, int> 地块点击;
-        public static void 触发地块点击(string SoilType, int 数量) {
-            地块点击?.Invoke(SoilType, 数量);
+        public static event Action<后台地块类, int> 地块点击;
+        public static void 触发地块点击(后台地块类 X, int 数量) {
+            地块点击?.Invoke(X, 数量);
         }
         public static event Action<Vector2Int> on地块采光;
         public static void 地块采光(Vector2Int X) {

@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace 墨心 {
-    public class 矿石类 {
+    public class 矿石类:I层级 {
         public enum 地块类型 {
             无,
             铜矿,

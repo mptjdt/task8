@@ -1,45 +1,45 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Object;
 
-namespace Ä«ĞÄ {
+namespace å¢¨å¿ƒ {
     public static partial class GameManager {
-        public static void ³õÊ¼»¯ºóÌ¨() {
-            ºóÌ¨ÊÀ½ç.´´½¨ÊÀ½ç(10, 10);
-            ºóÌ¨ÊÀ½ç.Ìî³äÉ³Ä®();
-            ºóÌ¨ÊÀ½ç.È÷ÏÂÍ­¿ó(3, 3);
-            ºóÌ¨ÊÀ½ç.Player = ºóÌ¨Íæ¼ÒÀà.InitializePlayer(5f, 5f);
+        public static void åˆå§‹åŒ–åå°() {
+            åå°ä¸–ç•Œ.åˆ›å»ºä¸–ç•Œ(10, 10);
+            åå°ä¸–ç•Œ.å¡«å……æ²™æ¼ ();
+            åå°ä¸–ç•Œ.æ´’ä¸‹é“œçŸ¿(3, 3);
+            åå°ä¸–ç•Œ.Player = åå°ç©å®¶ç±».InitializePlayer(5f, 5f);
         }
-        public static void ³õÊ¼»¯Ç°Ì¨() {
-            Ç°Ì¨ÊÀ½ç = MainCamera.AddComponent<Ç°Ì¨ÊÀ½çÀà>();
-            Ç°Ì¨ÈËÎï = MainCamera.AddComponent<Ç°Ì¨ÈËÎïÀà>();
-            ĞÅÏ¢Ãæ°å = MainCamera.AddComponent<ĞÅÏ¢Ãæ°åÏµÍ³>();
+        public static void åˆå§‹åŒ–å‰å°() {
+            å‰å°ä¸–ç•Œ = MainCamera.AddComponent<å‰å°ä¸–ç•Œç±»>();
+            å‰å°äººç‰© = MainCamera.AddComponent<å‰å°äººç‰©ç±»>();
+            ä¿¡æ¯é¢æ¿ = MainCamera.AddComponent<ä¿¡æ¯é¢æ¿ç³»ç»Ÿ>();
         }
-        public static void »æÖÆÊÀ½çÁ÷³Ì() {
-            Ç°Ì¨ÊÀ½ç.ËùÓĞµØ¿é = new Dictionary<Vector2Int, GameObject>();
-            for (int i = 0; i < ºóÌ¨ÊÀ½ç.Width; i++) {
-                for (int j = 0; j < ºóÌ¨ÊÀ½ç.Height; j++) {
-                    Ç°Ì¨ÊÀ½ç.´´½¨ÍÁÖÊ²ã(i, j, ºóÌ¨ÊÀ½ç.Grid[i, j]);
-                    GameObject ¿óÊ¯²ã¶ÔÏó = Ç°Ì¨ÊÀ½ç.´´½¨¿óÊ¯²ã(i, j, ºóÌ¨ÊÀ½ç.Grid[i, j]);
-                    Ç°Ì¨ÊÀ½ç.ËùÓĞµØ¿é.Add(ºóÌ¨ÊÀ½ç.Grid[i, j].Î»ÖÃ, ¿óÊ¯²ã¶ÔÏó);
+        public static void ç»˜åˆ¶ä¸–ç•Œæµç¨‹() {
+            å‰å°ä¸–ç•Œ.æ‰€æœ‰åœ°å— = new Dictionary<Vector2Int, GameObject>();
+            for (int i = 0; i < åå°ä¸–ç•Œ.Width; i++) {
+                for (int j = 0; j < åå°ä¸–ç•Œ.Height; j++) {
+                    å‰å°ä¸–ç•Œ.åˆ›å»ºåœŸè´¨å±‚(i, j, åå°ä¸–ç•Œ.Grid[i, j]);
+                    GameObject çŸ¿çŸ³å±‚å¯¹è±¡ = å‰å°ä¸–ç•Œ.åˆ›å»ºçŸ¿çŸ³å±‚(i, j, åå°ä¸–ç•Œ.Grid[i, j]);
+                    å‰å°ä¸–ç•Œ.æ‰€æœ‰åœ°å—.Add(åå°ä¸–ç•Œ.Grid[i, j].ä½ç½®, çŸ¿çŸ³å±‚å¯¹è±¡);
                 }
             }
-            Ç°Ì¨ÈËÎï.PlayerObj = Ç°Ì¨ÈËÎï.CreatePlayer(ºóÌ¨ÊÀ½ç.Player);
+            å‰å°äººç‰©.PlayerObj = å‰å°äººç‰©.CreatePlayer(åå°ä¸–ç•Œ.Player);
         }
-        public static void ¶©ÔÄÊÂ¼şÁ÷³Ì() {
+        public static void è®¢é˜…äº‹ä»¶æµç¨‹() {
             Event.OnPlayerPositionUpdated += (Vector2 position, float rotation) => {
-                Ç°Ì¨ÈËÎï.PlayerObj.transform.position = position;
-                Ç°Ì¨ÈËÎï.PlayerObj.transform.rotation = Quaternion.Euler(0, 0, rotation);
+                å‰å°äººç‰©.PlayerObj.transform.position = position;
+                å‰å°äººç‰©.PlayerObj.transform.rotation = Quaternion.Euler(0, 0, rotation);
             };
-            Event.onµØ¿é²É¹â += (Vector2Int X) => {
-                if (Ç°Ì¨ÊÀ½ç.ËùÓĞµØ¿é.TryGetValue(X, out GameObject É¾³ıµØ¿é)) {
-                    Ç°Ì¨ÊÀ½ç.ËùÓĞµØ¿é.Remove(X);
-                    Destroy(É¾³ıµØ¿é);
+            Event.onåœ°å—é‡‡å…‰ += (Vector2Int X) => {
+                if (å‰å°ä¸–ç•Œ.æ‰€æœ‰åœ°å—.TryGetValue(X, out GameObject åˆ é™¤åœ°å—)) {
+                    å‰å°ä¸–ç•Œ.æ‰€æœ‰åœ°å—.Remove(X);
+                    Destroy(åˆ é™¤åœ°å—);
                 }
             };
-            Event.µØ¿éµã»÷ += (string SoilType, int ÊıÁ¿) => {
-                ĞÅÏ¢Ãæ°å.GetComponentInChildren<Text>().text = $"µØ¿éÀàĞÍ: {SoilType}\nÊıÁ¿: {ÊıÁ¿}";
+            Event.åœ°å—ç‚¹å‡» += (string SoilType, int æ•°é‡) => {
+                ä¿¡æ¯é¢æ¿.é¢æ¿.GetComponentInChildren<Text>().text = $"åœ°å—ç±»å‹: {SoilType}\næ•°é‡: {æ•°é‡}";
             };
         }
     }

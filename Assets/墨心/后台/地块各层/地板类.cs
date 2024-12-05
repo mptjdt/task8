@@ -1,5 +1,5 @@
 namespace 墨心 {
-    public class 地板类 {
+    public class 地板类 :I层级{
         public enum 地块类型 {
             无,
             石地板

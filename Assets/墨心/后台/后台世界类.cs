@@ -3,11 +3,11 @@ using UnityEngine;
 using static 墨心.GameManager;
 
 namespace 墨心 {
-    public class 后台世界类 {
-        public 后台地块类[,] Grid;
+    public class 后台世界类 :I世界{
+        public 后台地块类[,] Grid { get; set; }
         public int Width => Grid.GetLength(0);
         public int Height => Grid.GetLength(1);
-        public 后台玩家类 Player;
+        public 后台玩家类 Player { get; set; }
         public void 创建世界(int 宽度, int 高度) {
             Print("正在创建世界...");
             Grid = new 后台地块类[宽度, 高度];

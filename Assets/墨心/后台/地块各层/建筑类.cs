@@ -1,5 +1,5 @@
 namespace 墨心 {
-    public class 建筑类 {
+    public class 建筑类 :I层级{
         public enum 地块类型 {
             无,
             树木,

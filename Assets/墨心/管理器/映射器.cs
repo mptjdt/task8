@@ -1,18 +1,18 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-namespace Ä«ĞÄ {
+namespace å¢¨å¿ƒ {
     public static partial class GameManager {
-        public static ºóÌ¨µØ¿éÀà »ñÈ¡µ±Ç°µØ¿é(Vector2 screenPosition) {
+        public static åå°åœ°å—ç±» è·å–å½“å‰åœ°å—(Vector2 screenPosition) {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-            Vector2 worldPos = new Vector2(worldPosition.x, worldPosition.y);// Ê¹ÓÃÉãÏñÍ·½«ÆÁÄ»×ø±ê×ª»»ÎªÊÀ½ç×ø±ê
-            int gridX = Mathf.FloorToInt(worldPos.x);  // È¡Õû×ª»»ÎªÍø¸ñ×ø±ê
-            int gridY = Mathf.FloorToInt(worldPos.y);  // È¡Õû×ª»»ÎªÍø¸ñ×ø±ê          
-            gridX = Mathf.Clamp(gridX, 0, ºóÌ¨ÊÀ½ç.Width - 1);
-            gridY = Mathf.Clamp(gridY, 0, ºóÌ¨ÊÀ½ç.Height - 1); // ½«ÊÀ½ç×ø±ê×ª»»ÎªÍø¸ñ×ø±ê                                                                     // ÅĞ¶ÏÊÇ·ñÔÚÓĞĞ§µØ¿é·¶Î§ÄÚ
-            if (gridX < 0 || gridX >= ºóÌ¨ÊÀ½ç.Width || gridY < 0 || gridY >= ºóÌ¨ÊÀ½ç.Height) {
-                return null;  // Èç¹û³¬³ö·¶Î§£¬·µ»Ø null »òÆäËû±íÊ¾ÎŞĞ§µÄÖµ
+            Vector2 worldPos = new Vector2(worldPosition.x, worldPosition.y);// ä½¿ç”¨æ‘„åƒå¤´å°†å±å¹•åæ ‡è½¬æ¢ä¸ºä¸–ç•Œåæ ‡
+            int gridX = Mathf.FloorToInt(worldPos.x);  // å–æ•´è½¬æ¢ä¸ºç½‘æ ¼åæ ‡
+            int gridY = Mathf.FloorToInt(worldPos.y);  // å–æ•´è½¬æ¢ä¸ºç½‘æ ¼åæ ‡          
+            gridX = Mathf.Clamp(gridX, 0, åå°ä¸–ç•Œ.Width - 1);
+            gridY = Mathf.Clamp(gridY, 0, åå°ä¸–ç•Œ.Height - 1); // å°†ä¸–ç•Œåæ ‡è½¬æ¢ä¸ºç½‘æ ¼åæ ‡                                                                     // åˆ¤æ–­æ˜¯å¦åœ¨æœ‰æ•ˆåœ°å—èŒƒå›´å†…
+            if (gridX < 0 || gridX >= åå°ä¸–ç•Œ.Width || gridY < 0 || gridY >= åå°ä¸–ç•Œ.Height) {
+                return null;  // å¦‚æœè¶…å‡ºèŒƒå›´ï¼Œè¿”å› null æˆ–å…¶ä»–è¡¨ç¤ºæ— æ•ˆçš„å€¼
             }
-            return ºóÌ¨ÊÀ½ç.Grid[gridX, gridY];// ¸ù¾İÍø¸ñ×ø±ê»ñÈ¡µ±Ç°µØ¿é²¢·µ»Ø
+            return åå°ä¸–ç•Œ.Grid[gridX, gridY];// æ ¹æ®ç½‘æ ¼åæ ‡è·å–å½“å‰åœ°å—å¹¶è¿”å›
         }
     }
 }

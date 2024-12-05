@@ -1,5 +1,5 @@
 namespace 墨心 {
-    public class 悬浮类 {
+    public class 悬浮类 :I层级{
         public enum 地块类型 {
             无
         }

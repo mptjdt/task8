@@ -4,35 +4,26 @@ using static 墨心.GameManager;
 using UnityEngine;
 
 namespace 墨心 {
-    public class 前台世界类 : MonoBehaviour {
+    public class 前台世界类 {
         public Dictionary<Vector2Int, GameObject> 所有地块;
-        public void Start() {
-
+        public GameObject 玩家;
+        public GameObject CreatePlayer(I角色 X) {
+            var A = new GameObject("Player");
+            A.transform.position = X.Position;
+            A.transform.rotation = Quaternion.Euler(0, 0, X.旋转角度);
+            A.AddComponent<SpriteRenderer>().sprite = LoadSprite("player1");
+            A.GetComponent<SpriteRenderer>().sortingOrder = 6;
+            return A;
         }
-        public void Update() {
-            if (Input.GetMouseButtonDown(1)) {
-                Command.开采地块();
-            }
-            if (Input.GetMouseButtonDown(0)) {
-                Vector2 mousePosition = Input.mousePosition;
-                后台地块类 当前地块 = 获取当前地块(mousePosition);
-                if (当前地块.矿石层 != null) {
-                    Event.触发地块点击(当前地块, 当前地块.矿石层.数量);
-                }
-                if (当前地块.矿石层 == null && 当前地块.土质层 != null) {
-                    Event.触发地块点击(当前地块, -1);
-                }
-            }
-        }
-        public void 创建土质层(int x, int y, 后台地块类 tileInfo) {
-            if (tileInfo.土质层 != null) {
-                GameObject tileObj = new GameObject("土质层_" + x + "_" + y);
-                tileObj.transform.position = new Vector3(x, y, 0);
-                tileObj.AddComponent<SpriteRenderer>().sprite = LoadSprite(获取土质类型字符串(tileInfo));
+        public void 创建土质层(int X, int Y, I地块 Z) {
+            if (Z.土质层 != null) {
+                GameObject tileObj = new GameObject("土质层_" + X + "_" + Y);
+                tileObj.transform.position = new Vector3(X, Y, 0);
+                tileObj.AddComponent<SpriteRenderer>().sprite = LoadSprite(获取土质类型字符串(Z));
                 tileObj.GetComponent<SpriteRenderer>().sortingOrder = 0;
             }
         }
-        public GameObject 创建矿石层(int x, int y, 后台地块类 tileInfo) {
+        public GameObject 创建矿石层(int x, int y, I地块 tileInfo) {
             if (tileInfo.矿石层 != null) {
                 GameObject tileObj = new GameObject("矿石层_" + x + "_" + y);
                 tileObj.transform.position = new Vector3(x, y, 0);

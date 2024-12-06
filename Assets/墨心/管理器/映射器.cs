@@ -2,7 +2,7 @@
 
 namespace 墨心 {
     public static partial class GameManager {
-        public static 后台地块类 获取当前地块(Vector2 screenPosition) {
+        public static I地块 获取当前地块(Vector2 screenPosition) {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             Vector2 worldPos = new Vector2(worldPosition.x, worldPosition.y);// 使用摄像头将屏幕坐标转换为世界坐标
             int gridX = Mathf.FloorToInt(worldPos.x);  // 取整转换为网格坐标

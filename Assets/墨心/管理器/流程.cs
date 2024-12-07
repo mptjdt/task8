@@ -48,14 +48,7 @@ namespace 墨心 {
                     Command.开采地块();
                 }
                 if (Input.GetMouseButtonDown(0)) {
-                    Vector2 mousePosition = Input.mousePosition;
-                    I地块 当前地块 = 获取当前地块(mousePosition);
-                    if (当前地块.矿石层 != null) {
-                        Event.触发地块点击(当前地块, 当前地块.矿石层.数量);
-                    }
-                    if (当前地块.矿石层 == null && 当前地块.土质层 != null) {
-                        Event.触发地块点击(当前地块, -1);
-                    }
+                    Command.点击地块();
                 }
             });
         }
@@ -68,14 +61,6 @@ namespace 墨心 {
                 if (前台世界.所有地块.TryGetValue(X, out GameObject 删除地块)) {
                     前台世界.所有地块.Remove(X);
                     Destroy(删除地块);
-                }
-            };
-            Event.地块点击 += (I地块 X, int 数量) => {
-                if (X.矿石层 != null) {
-                    信息面板.信息面板.GetComponentInChildren<Text>().text = $"地块类型: {获取矿石类型字符串(X)}\n数量: {数量}";
-                }
-                if (X.矿石层 == null &&X.土质层 != null) {
-                    信息面板.信息面板.GetComponentInChildren<Text>().text = $"地块类型: {获取土质类型字符串(X)}\n数量: {数量}";
                 }
             };
         }

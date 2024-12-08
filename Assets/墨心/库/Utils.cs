@@ -13,8 +13,7 @@ namespace 墨心 {
         public static Canvas _MainPanel;
         public static Canvas MainPanel => _MainPanel ?? (_MainPanel = new GameObject("MainPanel").AddComponent<Canvas>());
         public static void SetColor(this GameObject obj, Color color) {
-            var 背景 = obj.GetComponent<Image>();
-            背景.color = color;
+            obj.GetComponent<Image>().color = color;
         }
         public static void SetText(this GameObject obj, string text) {
             var A = obj.GetComponentInChildren<Text>();

@@ -17,10 +17,10 @@ namespace 墨心 {
                 }
             }
         }
-        public void 洒下铜矿(int 单个矿堆矿石数, int 矿堆个数) {
+        public void 洒下几堆铜矿(int 尺寸, int 数量) {
             Print("正在洒下铜矿...");
-            for (int i = 0; i < 矿堆个数; i++) {
-                传染铜矿(Random.Range(0, Width), Random.Range(0, Height), 单个矿堆矿石数);
+            for (int i = 0; i < 数量; i++) {
+                传染铜矿(Random.Range(0, Width), Random.Range(0, Height), 尺寸);
             }
         }
         private void 传染铜矿(int X, int Y, int 剩余传染次数) {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace 墨心 {
     public class 后台地块类 : I地块 {
-        public Vector2Int 位置 { get; set; }
+        public Vector2Int 坐标 { get; set; }//大于等于0
         public I土质层 土质层 { get; set; }
         public I矿石层 矿石层 { get; set; }
         public I地板层 地板层 { get; set; }
@@ -15,18 +15,19 @@ namespace 墨心 {
                     矿石层.数量 -= 1;
                 }
                 if (矿石层.数量 == 0) {
-                    Event.地块采光(位置);
+                    Event.地块采光(坐标);
                     矿石层 = null;
                 }
             }
         }
-    }
-    public static partial class GameManager {
-        public static string 获取土质类型字符串(I地块 tileinfo) {
-            return tileinfo.土质层.类型.ToString();
-        }
-        public static string 获取矿石类型字符串(I地块 tileinfo) {
-            return tileinfo.矿石层.类型.ToString();
+        public string 展示文本() {
+            if (矿石层 != null) {
+                return $"地块类型: {矿石层.类型}\n数量: {矿石层.数量}";
+            }
+            if (土质层 != null) {
+                return $"地块类型: {土质层.类型}\n数量: {-1}";
+            }
+            return "未知";
         }
     }
 }

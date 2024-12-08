@@ -13,8 +13,7 @@ namespace 墨心 {
             Grid = new 后台地块类[宽度, 高度];
             for (int i = 0; i < 宽度; i++) {
                 for (int j = 0; j < 高度; j++) {
-                    Grid[i, j] = new 后台地块类();
-                    Grid[i, j].位置 = new Vector2Int(i, j);
+                    Grid[i, j] = new 后台地块类 { 坐标 = new Vector2Int(i, j) };
                 }
             }
         }

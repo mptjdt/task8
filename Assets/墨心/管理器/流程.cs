@@ -18,7 +18,6 @@ namespace 墨心 {
             后台世界.填充沙漠();
             后台世界.洒下几堆铜矿(X.铜矿尺寸, X.铜矿数量);
             后台世界.创建玩家(X.玩家移速, X.玩家转速);
-            //后台世界.Player = 后台玩家类.InitializePlayer(5f, 5f);
         }
         public static void 绘制世界流程() {
             for (int i = 0; i < 后台世界.Width; i++) {
@@ -44,11 +43,10 @@ namespace 墨心 {
                     Command.帧右移();
                 }
                 if (Input.GetMouseButtonDown(1)) {
-                    Command.开采地块(X, Y);
+                    Command.开采地块((int)Input.mousePosition.x, (int)Input.mousePosition.y);
                 }
                 if (Input.GetMouseButtonDown(0)) {
-                    //Input.mousePosition转化为坐标
-                    信息面板.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(X, Y);
+                    信息面板.信息面板.GetComponentInChildren<Text>().text = Command.查询地块((int)Input.mousePosition.x, (int)Input.mousePosition.y);
                 }
             });
         }

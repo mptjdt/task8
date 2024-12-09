@@ -18,19 +18,15 @@ namespace 墨心 {
             PlayerMove(new Vector2(后台世界.Player.移动速度 * Time.deltaTime, 0), 270f);
         }
         public static void 开采地块(int X,int Y) {
-            获取当前地块(Input.mousePosition).开采();
+            获取当前地块(X,Y).开采();
         }
         public static string 查询地块(int X, int Y) {
-            //查看地块信息(Input.mousePosition);
+            return 获取当前地块(X, Y).展示文本();
         }
         private static void PlayerMove(Vector2 X, float 目标方向) {
             后台世界.Player.坐标 += X;
             后台世界.Player.旋转角度 = Mathf.LerpAngle(后台世界.Player.旋转角度, 目标方向, Time.deltaTime * 后台世界.Player.旋转速度);
             Event.角色坐标更新(后台世界.Player.坐标, 后台世界.Player.旋转角度);
-        }
-        public static void 查看地块信息(Vector2 X) {
-            var A = 获取当前地块(X);
-            信息面板.信息面板.GetComponentInChildren<Text>().text = A.展示文本();
         }
     }
 }

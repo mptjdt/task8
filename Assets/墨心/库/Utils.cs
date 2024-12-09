@@ -41,7 +41,15 @@ namespace 墨心 {
         }
         public static Action OnAppUpdateCallback;
         public static void OnAppUpdate(Action callback) {
+            if (MainCamera.GetComponent<AppUpdate>() == null) {
+                MainCamera.AddComponent<AppUpdate>();
+            }
             OnAppUpdateCallback = callback;
+        }
+    }
+    public class AppUpdate : MonoBehaviour {
+        void Update() {
+            墨心.GameManager.OnAppUpdateCallback?.Invoke();
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace 墨心 {
     public class 后台地块类 : I地块 {
-        public Vector2Int 坐标 { get; set; }//大于等于0
+        public Vector2Int 坐标 { get; set; }
         public I土质层 土质层 { get; set; }
         public I矿石层 矿石层 { get; set; }
         public I地板层 地板层 { get; set; }

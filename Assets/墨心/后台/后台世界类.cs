@@ -36,5 +36,10 @@ namespace 墨心 {
                 }
             }
         }
+        public void 创建玩家(int 玩家移速,int 玩家转速) {
+            Player = new 后台玩家类();
+            Player.移动速度 = 玩家移速;
+            Player.旋转速度 = 玩家转速;
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace 墨心 {
             if (MainCamera.GetComponent<AppUpdate>() == null) {
                 MainCamera.AddComponent<AppUpdate>();
             }
-            OnAppUpdateCallback = callback;
+            OnAppUpdateCallback += callback;
         }
     }
     public class AppUpdate : MonoBehaviour {

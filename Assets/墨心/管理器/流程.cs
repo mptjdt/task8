@@ -27,6 +27,9 @@ namespace 墨心 {
                 }
             }
             前台世界.创建玩家(后台世界.Player);
+            OnAppUpdate(() => {
+                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
+            });
         }
         public static void 初始化快捷指令() {
             OnAppUpdate(() => {
@@ -43,10 +46,10 @@ namespace 墨心 {
                     Command.帧右移();
                 }
                 if (Input.GetMouseButtonDown(1)) {
-                    Command.开采地块((int)Input.mousePosition.x, (int)Input.mousePosition.y);
+                    Command.开采地块(获取后台坐标(Input.mousePosition).x, 获取后台坐标(Input.mousePosition).y);
                 }
                 if (Input.GetMouseButtonDown(0)) {
-                    信息面板.信息面板.GetComponentInChildren<Text>().text = Command.查询地块((int)Input.mousePosition.x, (int)Input.mousePosition.y);
+                    信息面板.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(获取后台坐标(Input.mousePosition).x, 获取后台坐标(Input.mousePosition).y);
                 }
             });
         }

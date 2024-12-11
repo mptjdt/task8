@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Object;
@@ -11,6 +12,10 @@ namespace 墨心 {
         public int 铜矿数量 = 3;
         public int 玩家移速 = 5;
         public int 玩家转速 = 5;
+    }
+    public class 背包设定类 {
+        public int 宽度 = 4;
+        public int 高度 = 5;
     }
     public static partial class GameManager {
         public static void 创建世界流程(世界设定类 X) {
@@ -31,6 +36,12 @@ namespace 墨心 {
                 MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
             });
         }
+        public static void 创建背包流程(背包设定类 X) {
+            后台背包.创建背包(X.宽度, X.高度);
+        }
+        public static void 绘制背包流程() {
+            背包面板.创建背包面板(后台背包.Width,后台背包.Height);
+        }
         public static void 初始化快捷指令() {
             OnAppUpdate(() => {
                 if (Input.GetKey(KeyCode.W)) {
@@ -44,6 +55,9 @@ namespace 墨心 {
                 }
                 if (Input.GetKey(KeyCode.D)) {
                     Command.帧右移();
+                }
+                if (Input.GetKey(KeyCode.E)) {
+                    Command.切换背包();
                 }
                 if (Input.GetMouseButtonDown(1)) {
                     Command.开采地块(获取后台坐标(Input.mousePosition).x, 获取后台坐标(Input.mousePosition).y);
@@ -64,6 +78,13 @@ namespace 墨心 {
                     Destroy(A);
                     Print($"地块 {X.x}-{X.y} 采光！");
                 }
+            };
+            Event.当开关背包 +=()=> {
+                背包面板.背包是否打开 = !背包面板.背包是否打开;
+                背包面板.背包面板.SetActive(背包面板.背包是否打开);
+            };
+            Event.当背包更新 += (I物品[,] X) => {
+                背包面板.更新背包显示(X);
             };
         }
     }

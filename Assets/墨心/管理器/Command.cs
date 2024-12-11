@@ -2,6 +2,7 @@
 using static 墨心.GameManager;
 using UnityEngine.UI;
 using static UnityEngine.Object;
+using System;
 
 namespace 墨心 {
     public class Command {
@@ -19,9 +20,19 @@ namespace 墨心 {
         }
         public static void 开采地块(int X,int Y) {
             获取当前地块(X,Y).开采();
+            if (获取当前地块(X, Y).矿石层 != null) {
+                后台背包.添加物品(new 后台物品类() { 名称 = 获取当前地块(X, Y).矿石层.类型.ToString(), 数量 = 1 });
+                if(获取当前地块(X, Y).矿石层.数量 == 0) {
+                    获取当前地块(X, Y).矿石层 = null;
+                }
+                Event.背包更新(后台背包.Grid);
+            }
         }
         public static string 查询地块(int X, int Y) {
             return 获取当前地块(X, Y).展示文本();
+        }
+        public static void 切换背包() {
+            Event.开关背包();
         }
         private static void PlayerMove(Vector2 X, float 目标方向) {
             后台世界.Player.坐标 += X;

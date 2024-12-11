@@ -3,6 +3,7 @@ using UnityEngine;
 using static 墨心.GameManager;
 
 namespace 墨心 {
+    [System.Serializable]
     public class 后台世界类 :I世界{
         public I地块[,] Grid { get; set; }
         public int Width => Grid.GetLength(0);

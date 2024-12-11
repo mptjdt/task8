@@ -26,7 +26,7 @@ namespace 墨心 {
     public interface I物品 {
         public string 名称 {  get; set; }
         public int 数量 { get; set; }
-        public Vector2Int 坐标 { get; set; }
+        public Vector2Int 槽位 { get; set; }
     }
     public interface I背包 {
         public int Width { get; }

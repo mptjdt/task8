@@ -41,6 +41,7 @@ namespace 墨心 {
         }
         public static void 绘制背包流程() {
             背包面板.创建背包面板(后台背包.Width,后台背包.Height);
+            背包面板.更新背包显示(后台背包.Grid);
         }
         public static void 初始化快捷指令() {
             OnAppUpdate(() => {
@@ -56,7 +57,7 @@ namespace 墨心 {
                 if (Input.GetKey(KeyCode.D)) {
                     Command.帧右移();
                 }
-                if (Input.GetKey(KeyCode.E)) {
+                if (Input.GetKeyDown(KeyCode.E)) {
                     Command.切换背包();
                 }
                 if (Input.GetMouseButtonDown(1)) {

@@ -1,48 +1,48 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-namespace Ä«ĞÄ {
-    public interface I²ã¼¶ {
+namespace å¢¨å¿ƒ {
+    public interface Iå±‚çº§ {
 
     }
-    public interface IµØ°å²ã : I²ã¼¶ {
-        public µØ°åÖÖÀà ÀàĞÍ { get; set; }
-        public int ÊıÁ¿ { get; set; }
+    public interface Iåœ°æ¿å±‚ : Iå±‚çº§ {
+        public åœ°æ¿ç§ç±» ç±»å‹ { get; set; }
+        public int æ•°é‡ { get; set; }
     }
-    public interface I½¨Öş²ã : I²ã¼¶ {
-        public ½¨ÖşÖÖÀà ÀàĞÍ { get; set; }
-        public int ÊıÁ¿ { get; set; }
+    public interface Iå»ºç­‘å±‚ : Iå±‚çº§ {
+        public å»ºç­‘ç§ç±» ç±»å‹ { get; set; }
+        public int æ•°é‡ { get; set; }
     }
-    public interface I¿óÊ¯²ã : I²ã¼¶ {
-        public ¿óÊ¯ÖÖÀà ÀàĞÍ { get; set; }
-        public int ÊıÁ¿ { get; set; }
+    public interface IçŸ¿çŸ³å±‚ : Iå±‚çº§ {
+        public çŸ¿çŸ³ç§ç±» ç±»å‹ { get; set; }
+        public int æ•°é‡ { get; set; }
     }
-    public interface IÍÁÖÊ²ã : I²ã¼¶ {
-        public ÍÁÖÊÖÖÀà ÀàĞÍ { get; set; }
+    public interface IåœŸè´¨å±‚ : Iå±‚çº§ {
+        public åœŸè´¨ç§ç±» ç±»å‹ { get; set; }
     }
-    public interface IĞü¸¡²ã : I²ã¼¶ {
-        public Ğü¸¡ÖÖÀà ÀàĞÍ { get; set; }
-        public int ÊıÁ¿ { get; set; }
+    public interface Iæ‚¬æµ®å±‚ : Iå±‚çº§ {
+        public æ‚¬æµ®ç§ç±» ç±»å‹ { get; set; }
+        public int æ•°é‡ { get; set; }
     }
-    public enum µØ°åÖÖÀà {
-        ÎŞ,
-        Ê¯µØ°å,
+    public enum åœ°æ¿ç§ç±» {
+        æ— ,
+        çŸ³åœ°æ¿,
     }
-    public enum ½¨ÖşÖÖÀà {
-        ÎŞ,
-        Ê÷Ä¾,
-        Ïä×Ó,
+    public enum å»ºç­‘ç§ç±» {
+        æ— ,
+        æ ‘æœ¨,
+        ç®±å­,
     }
-    public enum ¿óÊ¯ÖÖÀà {
-        ÎŞ,
-        Í­¿ó,
-        Ìú¿ó,
+    public enum çŸ¿çŸ³ç§ç±» {
+        æ— ,
+        é“œçŸ¿,
+        é“çŸ¿,
     }
-    public enum ÍÁÖÊÖÖÀà {
-        Ğé¿Õ,
-        É³Ä®,
-        µ­Ë®,
+    public enum åœŸè´¨ç§ç±» {
+        è™šç©º,
+        æ²™æ¼ ,
+        æ·¡æ°´,
     }
-    public enum Ğü¸¡ÖÖÀà {
-        ÎŞ,
+    public enum æ‚¬æµ®ç§ç±» {
+        æ— ,
     }
 }

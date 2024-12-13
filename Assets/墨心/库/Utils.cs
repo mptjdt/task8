@@ -13,7 +13,13 @@ namespace 墨心 {
         public static Canvas _MainPanel;
         public static Canvas MainPanel => _MainPanel ?? (_MainPanel = new GameObject("MainPanel").AddComponent<Canvas>());
         public static void SetColor(this GameObject obj, Color color) {
-            obj.AddComponent<Image>().color = color;
+            var A = new GameObject("背景").AddComponent<Image>();
+            A.transform.SetParent(obj.transform, false);
+            var 背景属性 = A.GetComponent<RectTransform>();
+            背景属性.anchorMin = 背景属性.anchorMax = new Vector2(1, 0);
+            背景属性.sizeDelta = obj.GetComponent<RectTransform>().sizeDelta;
+            背景属性.anchoredPosition = Vector2.zero;
+            A.color = color;
         }
         public static void SetGrid(this GameObject obj, int X, int Y) {
             var A = obj.GetComponent<GridLayoutGroup>();
@@ -35,7 +41,7 @@ namespace 墨心 {
             var A = new GameObject("文本框").AddComponent<Text>();
             A.transform.SetParent(obj.transform, false);
             var 文本框属性 = A.GetComponent<RectTransform>();
-            文本框属性.anchorMin = 文本框属性.anchorMax = new Vector2(0, 0);
+            文本框属性.anchorMin = 文本框属性.anchorMax = new Vector2(1, 0);
             文本框属性.sizeDelta = obj.GetComponent<RectTransform>().sizeDelta;
             文本框属性.anchoredPosition = Vector2.zero;
             A.font = Resources.GetBuiltinResource<Font>("Arial.ttf");

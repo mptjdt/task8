@@ -1,0 +1,5 @@
+namespace Ä«ÐÄ {
+    public class ±Ê¼ÇÀà {
+
+    }
+}

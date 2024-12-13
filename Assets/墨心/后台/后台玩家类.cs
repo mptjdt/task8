@@ -8,5 +8,6 @@ namespace 墨心 {
         public float 旋转角度 { get; set; }
         public float 移动速度 { get; set; }
         public float 旋转速度 { get; set; }
+        public I背包 背包 { get; set; }
     }
 }

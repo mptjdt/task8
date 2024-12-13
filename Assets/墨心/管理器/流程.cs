@@ -36,14 +36,12 @@ namespace 墨心 {
                 MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
             });
         }
-        public static void 创建背包流程(背包设定类 X) {
-            后台背包.创建背包(X.宽度, X.高度);
+        public static void 绘制UI流程() {
+            UI系统.创建信息面板();
+            UI系统.创建背包面板(后台背包.Width,后台背包.Height);
+            UI系统.更新背包显示(后台背包.Grid);
         }
-        public static void 绘制背包流程() {
-            背包面板.创建背包面板(后台背包.Width,后台背包.Height);
-            背包面板.更新背包显示(后台背包.Grid);
-        }
-        public static void 初始化快捷指令() {
+        public static void 注册指令流程() {
             OnAppUpdate(() => {
                 if (Input.GetKey(KeyCode.W)) {
                     Command.帧上移();
@@ -61,10 +59,12 @@ namespace 墨心 {
                     Command.切换背包();
                 }
                 if (Input.GetMouseButtonDown(1)) {
-                    Command.开采地块(获取后台坐标(Input.mousePosition).x, 获取后台坐标(Input.mousePosition).y);
+                    var A = 获取后台坐标(Input.mousePosition);
+                    Command.开采地块(A.x, A.y);
                 }
                 if (Input.GetMouseButtonDown(0)) {
-                    信息面板.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(获取后台坐标(Input.mousePosition).x, 获取后台坐标(Input.mousePosition).y);
+                    var A = 获取后台坐标(Input.mousePosition);
+                    UI系统.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(A.x, A.y);
                 }
             });
         }
@@ -72,6 +72,10 @@ namespace 墨心 {
             Event.当角色坐标更新 += (Vector2 X, float Y) => {
                 前台世界.玩家.transform.position = X;
                 前台世界.玩家.transform.rotation = Quaternion.Euler(0, 0, Y);
+            };
+            Event.当地块采集 += (Vector2Int X) => {
+                后台背包.添加物品(new 后台物品类() { 名称 = 获取当前地块(X).矿石层.类型.ToString(), 数量 = 1 });
+                Event.背包更新();
             };
             Event.当地块采光 += (Vector2Int X) => {
                 if (前台世界.所有矿石.TryGetValue(X, out GameObject A)) {
@@ -86,6 +90,9 @@ namespace 墨心 {
             };
             Event.当背包更新 += (I物品[,] X) => {
                 背包面板.更新背包显示(X);
+            };
+            Event.当游戏退出 += () => {
+                存档管理器.存档();
             };
         }
     }

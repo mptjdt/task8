@@ -41,6 +41,7 @@ namespace 墨心 {
             Player = new 后台玩家类();
             Player.移动速度 = 玩家移速;
             Player.旋转速度 = 玩家转速;
+            Player.背包 = new 后台背包类();
         }
     }
 }

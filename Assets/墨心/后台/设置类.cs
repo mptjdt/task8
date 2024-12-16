@@ -1,5 +1,5 @@
-namespace Ä«ĞÄ { 
-    public class ÉèÖÃÀà {
+ï»¿namespace å¢¨å¿ƒ { 
+    public class è®¾ç½®ç±» {
 
     }
 }

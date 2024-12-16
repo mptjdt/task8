@@ -11,13 +11,17 @@ namespace 墨心 {
         public static void 地块采光(Vector2Int X) {
             当地块采光?.Invoke(X);
         }
-        public static event Action 当开关背包;
-        public static void 开关背包() {
-            当开关背包?.Invoke();
+        public static event Action<Vector2Int> 当地块采集成功;
+        public static void 地块采集成功(Vector2Int X) {
+            当地块采集成功?.Invoke(X);
         }
         public static event Action<I物品[,]> 当背包更新;
         public static void 背包更新(I物品[,] X) {
             当背包更新?.Invoke(X);
+        }
+        public static event Action 当游戏退出;
+        public static void 游戏退出() {
+            当游戏退出?.Invoke();
         }
     }
 }

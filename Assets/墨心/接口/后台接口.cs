@@ -22,6 +22,7 @@ namespace 墨心 {
         public float 旋转角度 { get; set; }
         public float 移动速度 { get; set; }
         public float 旋转速度 { get; set; }
+        public I背包 背包{ get; set; }
     }
     public interface I物品 {
         public string 名称 {  get; set; }
@@ -32,5 +33,7 @@ namespace 墨心 {
         public int Width { get; }
         public int Height { get; }
         public I物品[,] Grid { get; set; }
+        public void 创建背包(int X, int Y);
+        public bool 添加物品(I物品 X);
     }
 }

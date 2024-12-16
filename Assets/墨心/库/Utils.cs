@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 namespace 墨心 {
     // 工具文件
@@ -20,6 +22,9 @@ namespace 墨心 {
             背景属性.sizeDelta = obj.GetComponent<RectTransform>().sizeDelta;
             背景属性.anchoredPosition = Vector2.zero;
             A.color = color;
+        }
+        public static void SetColorDirectly(this GameObject obj, Color color) {
+            obj.AddComponent<Image>().color = color;
         }
         public static void SetGrid(this GameObject obj, int X, int Y) {
             var A = obj.GetComponent<GridLayoutGroup>();
@@ -58,6 +63,42 @@ namespace 墨心 {
             矩形属性.sizeDelta = new Vector2(Screen.width * 宽度, Screen.height * 高度);
             矩形属性.anchoredPosition = new Vector2(-Screen.width * 左, -Screen.height * 上);         
             return 矩形;
+        }
+        public static void FileWrite<T>(string X, T Y) {
+            JsonSerializerSettings settings = new JsonSerializerSettings {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Objects
+            };
+            string json = JsonConvert.SerializeObject(Y, Formatting.Indented, settings);
+            try {
+                File.WriteAllText(X, json);
+                Print($"{typeof(T).Name} 保存成功！");
+            }
+            catch (Exception e) {
+                Print("保存失败: " + e.Message);
+            }
+        }
+        public static T FileRead<T>(string X) {
+            if (!File.Exists(X)) {
+                Print($"文件 {X} 未找到，返回默认值");
+                return default(T);
+            }
+            else {
+                Print($"{typeof(T).Name}读档成功");
+            }
+            string json = File.ReadAllText(X);
+            JsonSerializerSettings settings = new JsonSerializerSettings {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Objects
+            };
+            try {
+                T result = JsonConvert.DeserializeObject<T>(json, settings);
+                return result;
+            }
+            catch (Exception e) {
+                Print("读档失败: " + e.Message);
+                throw;
+            }
         }
         public static Action OnAppUpdateCallback;
         public static void OnAppUpdate(Action callback) {

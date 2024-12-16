@@ -2,7 +2,6 @@ using UnityEngine;
 using static 墨心.GameManager;
 
 namespace 墨心 {
-    [System.Serializable]
     public class 后台背包类 : I背包 {
         public I物品[,] Grid { get; set; }
         public int Width => Grid.GetLength(0);

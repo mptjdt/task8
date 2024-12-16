@@ -31,7 +31,7 @@ namespace 墨心 {
         }
         public static void 切换背包() {
             笔记.背包是否打开 = !笔记.背包是否打开;
-            UI系统.打开背包(笔记.背包是否打开);
+            UI.打开背包(笔记.背包是否打开);
         }
         private static void PlayerMove(Vector2 X, float 目标方向) {
             后台世界.Player.坐标 += X;

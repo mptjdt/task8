@@ -4,7 +4,7 @@ using static 墨心.GameManager;
 
 namespace 墨心 {
     [System.Serializable]
-    public class 后台世界类 :I世界{
+    public class 后台世界类 : I世界 {
         public I地块[,] Grid { get; set; }
         public int Width => Grid.GetLength(0);
         public int Height => Grid.GetLength(1);
@@ -37,7 +37,7 @@ namespace 墨心 {
                 }
             }
         }
-        public void 创建玩家(int 玩家移速,int 玩家转速) {
+        public void 创建玩家(int 玩家移速, int 玩家转速) {
             Player = new 后台玩家类();
             Player.移动速度 = 玩家移速;
             Player.旋转速度 = 玩家转速;

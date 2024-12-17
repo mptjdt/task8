@@ -15,8 +15,8 @@ namespace 墨心 {
         public static void 地块采集成功(Vector2Int X) {
             当地块采集成功?.Invoke(X);
         }
-        public static event Action<I物品[,]> 当背包更新;
-        public static void 背包更新(I物品[,] X) {
+        public static event Action<I背包> 当背包更新;
+        public static void 背包更新(I背包 X) {
             当背包更新?.Invoke(X);
         }
         public static event Action 当游戏退出;

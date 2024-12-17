@@ -20,14 +20,15 @@ namespace 墨心 {
     }
     public static partial class GameManager {
         public static void 创建世界流程(世界设定类 X) {
+            后台世界 = new();
             后台世界.创建世界(X.宽度, X.高度);
             后台世界.填充沙漠();
             后台世界.洒下几堆铜矿(X.铜矿尺寸, X.铜矿数量);
             后台世界.创建玩家(X.玩家移速, X.玩家转速);
-            后台世界.Player.背包.创建背包(X.背包宽度,X.背包高度);
+            后台世界.Player.背包.创建背包(X.背包宽度, X.背包高度);
         }
         public static void 创建笔记流程(笔记设定类 X) {
-            笔记.背包是否打开=X.背包是否打开;
+            笔记.背包是否打开 = X.背包是否打开;
         }
         public static void 绘制世界流程() {
             for (int i = 0; i < 后台世界.Width; i++) {
@@ -37,13 +38,11 @@ namespace 墨心 {
                 }
             }
             前台世界.创建玩家(后台世界.Player);
-            OnAppUpdate(() => {
-                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
-            });
+            OnAppUpdate(() => MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10));
         }
         public static void 绘制UI流程() {
             UI.创建信息面板();
-            UI.创建背包面板(后台世界.Player.背包.Width, 后台世界.Player.背包.Height,笔记.背包是否打开);
+            UI.创建背包面板(后台世界.Player.背包.Width, 后台世界.Player.背包.Height, 笔记.背包是否打开);
             UI.更新背包显示(后台世界.Player.背包.Grid);
         }
         public static void 注册指令流程() {
@@ -79,7 +78,7 @@ namespace 墨心 {
                 前台世界.玩家.transform.rotation = Quaternion.Euler(0, 0, Y);
             };
             Event.当地块采集成功 += (Vector2Int X) => {
-                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 获取当前地块(X.x,X.y).矿石层.类型.ToString(), 数量 = 1 });
+                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 获取当前地块(X.x, X.y).矿石层.类型.ToString(), 数量 = 1 });
                 Event.背包更新(后台世界.Player.背包.Grid);
             };
             Event.当地块采光 += (Vector2Int X) => {

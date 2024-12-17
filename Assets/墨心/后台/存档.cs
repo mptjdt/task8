@@ -14,7 +14,7 @@ namespace 墨心 {
             FileWrite(笔记文件路径, 笔记);
         }
         public void 读档() {
-            后台世界 = FileRead<后台世界类>(世界文件路径) ?? new 后台世界类();
+            后台世界 = FileRead<后台世界类>(世界文件路径);
             笔记 = FileRead<笔记类>(笔记文件路径) ?? new 笔记类();
         }
     }

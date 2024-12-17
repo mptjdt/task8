@@ -8,8 +8,7 @@ namespace 墨心 {
         public static 存档管理器 存档管理器 = new();
         public static 笔记类 笔记= new();
         public static void MainStart() {
-            存档管理器.读档();
-            if (后台世界.Grid == null || 后台世界.Player == null) {
+            if (!存档管理器.读档()) {
                 创建世界流程(new 世界设定类());
                 创建笔记流程(new 笔记设定类());
             }

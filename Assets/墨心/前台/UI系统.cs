@@ -6,7 +6,7 @@ using static 墨心.GameManager;
 namespace 墨心 {
     public class UI系统 {
         public GameObject 信息面板;
-        public Dictionary<Vector2Int, GameObject> 所有物品 = new();
+        public Dictionary<int, GameObject> 所有物品 = new();
         public GameObject 背包面板;
         public void 创建信息面板() {
             信息面板 = MainPanel.创建矩形(0.8f, 0, 0.2f, 0.2f);  // 左80% 上0 宽20% 高20%。右上角
@@ -19,13 +19,11 @@ namespace 墨心 {
             背包面板.SetColorDirectly(Color.white);
             背包面板.SetActive(Z);
         }
-        public void 更新背包显示(I物品[,] X) {
-            for (int i = 0; i < X.GetLength(0); i++) {
-                for (int j = 0; j < X.GetLength(1); j++) {
-                    所有物品[new Vector2Int(i, j)] = 背包面板.transform.GetChild(i * X.GetLength(1) + j).gameObject;
-                    if (X[i, j] != null) {
-                        所有物品[new Vector2Int(i, j)].GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X[i, j].名称);
-                    }
+        public void 更新背包显示(I背包 X) {
+            for (int i = 0; i < X.Width*X.Height; i++) {
+                所有物品[i] = 背包面板.transform.GetChild(i).gameObject;
+                if (X.物品列表[i] != null) {
+                    所有物品[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X.物品列表[i].名称);
                 }
             }
         }

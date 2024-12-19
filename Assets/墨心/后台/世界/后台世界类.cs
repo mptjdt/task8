@@ -3,9 +3,11 @@ using UnityEngine;
 using static 墨心.GameManager;
 
 namespace 墨心 {
-    [System.Serializable]
     public class 后台世界类 : I世界 {
-        public I地块[,] Grid { get; set; }
+        public I地块[,] Grid;
+        public I地块 this[int x, int y] {
+            get => Grid[x, y];
+        }
         public int Width => Grid.GetLength(0);
         public int Height => Grid.GetLength(1);
         public I角色 Player { get; set; }

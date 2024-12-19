@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace 墨心 {
     public interface I世界 {
         public I地块 this[int X, int Y] { get; }
-        //public I地块[,] Grid { get; set; }
         public int Width { get; }
         public int Height { get; }
         public I角色 Player { get; set; }
@@ -26,15 +26,15 @@ namespace 墨心 {
         public I背包 背包 { get; set; }
     }
     public interface I背包 {
-        public int Width { get; }
-        public int Height { get; }
-        public I物品[,] Grid { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public List<I物品> 物品列表 { get; set; }
         public void 创建背包(int X, int Y);
         public bool 添加物品(I物品 X);
     }
     public interface I物品 {
         public string 名称 { get; set; }
         public int 数量 { get; set; }
-        public Vector2Int 槽位 { get; set; }
+        public int 槽位 { get; set; }
     }
 }

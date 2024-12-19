@@ -11,11 +11,5 @@ namespace 墨心 {
             gridY = Mathf.Clamp(gridY, 0, 后台世界.Height - 1); // 将世界坐标转换为网格坐标
             return new Vector2Int(gridX, gridY);
         }
-        public static I地块 获取当前地块(int X, int Y) {
-            if (X < 0 || X >= 后台世界.Width || Y < 0 || Y >= 后台世界.Height) {
-                return null;
-            }
-            return 后台世界.Grid[X, Y];
-        }
     }
 }

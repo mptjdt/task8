@@ -43,7 +43,7 @@ namespace 墨心 {
         public static void 绘制UI流程() {
             UI.创建信息面板();
             UI.创建背包面板(后台世界.Player.背包.Width, 后台世界.Player.背包.Height, 笔记.背包是否打开);
-            UI.更新背包显示(后台世界.Player.背包.Grid);
+            UI.更新背包显示(后台世界.Player.背包);
         }
         public static void 注册指令流程() {
             OnAppUpdate(() => {
@@ -73,22 +73,22 @@ namespace 墨心 {
             });
         }
         public static void 订阅事件流程() {
-            Event.当角色坐标更新 += (Vector2 X, float Y) => {
+            Event.当角色坐标更新 += (X, Y) => {
                 前台世界.玩家.transform.position = X;
                 前台世界.玩家.transform.rotation = Quaternion.Euler(0, 0, Y);
             };
-            Event.当地块采集成功 += (Vector2Int X) => {
-                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 获取当前地块(X.x, X.y).矿石层.类型.ToString(), 数量 = 1 });
-                Event.背包更新(后台世界.Player.背包.Grid);
+            Event.当地块采集成功 += (X) => {
+                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].矿石层.类型.ToString(), 数量 = 1 });
+                Event.背包更新(后台世界.Player.背包);
             };
-            Event.当地块采光 += (Vector2Int X) => {
+            Event.当地块采光 += (X) => {
                 if (前台世界.所有矿石.TryGetValue(X, out GameObject A)) {
                     前台世界.所有矿石.Remove(X);
                     Destroy(A);
                     Print($"地块 {X.x}-{X.y} 采光！");
                 }
             };
-            Event.当背包更新 += (I物品[,] X) => {
+            Event.当背包更新 += (X) => {
                 UI.更新背包显示(X);
             };
             Event.当游戏退出 += () => {

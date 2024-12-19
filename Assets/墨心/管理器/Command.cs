@@ -24,10 +24,10 @@ namespace 墨心 {
             PlayerMove(new Vector2(后台世界.Player.移动速度 * Time.deltaTime, 0), 270f);
         }
         public static void 开采地块(int X,int Y) {
-            获取当前地块(X,Y).开采();
+            后台世界[X,Y].开采();
         }
         public static string 查询地块(int X, int Y) {
-            return 获取当前地块(X, Y).展示文本();
+            return 后台世界[X, Y].展示文本();
         }
         public static void 切换背包() {
             笔记.背包是否打开 = !笔记.背包是否打开;

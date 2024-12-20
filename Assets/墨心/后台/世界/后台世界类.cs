@@ -39,10 +39,32 @@ namespace 墨心 {
                 }
             }
         }
-        public void 创建玩家(int 玩家移速, int 玩家转速) {
+        public void 填充草地() {
+            Print("正在填充草地...");
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
+                    if (UnityEngine.Random.value < 0.4f) {
+                        Grid[i, j].土质层 = 土质类.创建草地地块();
+                    }
+                }
+            }
+        }
+        public void 种植树木() {
+            Print("正在种植树木...");
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
+                    if (UnityEngine.Random.value < 0.04f&& Grid[i, j].土质层.类型== 土质种类.草地) {
+                        Grid[i, j].建筑层 = 建筑类.创建树木地块();
+                    }
+                }
+            }
+        }
+        public void 创建玩家(int 玩家移速, int 玩家转速,int 玩家血量,int 玩家饱腹值) {
             Player = new 后台玩家类();
             Player.移动速度 = 玩家移速;
             Player.旋转速度 = 玩家转速;
+            Player.血量 = 玩家血量;
+            Player.饱腹值 = 玩家饱腹值;
             Player.背包 = new 后台背包类();
         }
     }

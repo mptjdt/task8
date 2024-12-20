@@ -12,9 +12,9 @@ namespace 墨心 {
         public Vector2Int 坐标 { get; set; }
         public I土质层 土质层 { get; set; }
         public I矿石层 矿石层 { get; set; }
-        public I地板层 地板层 { get; }
-        public I建筑层 建筑层 { get; }
-        public I悬浮层 悬浮层 { get; }
+        public I地板层 地板层 { get; set; }
+        public I建筑层 建筑层 { get; set; }
+        public I悬浮层 悬浮层 { get; set; }
         public void 开采();
         public string 展示文本();
     }
@@ -23,7 +23,10 @@ namespace 墨心 {
         public float 旋转角度 { get; set; }
         public float 移动速度 { get; set; }
         public float 旋转速度 { get; set; }
+        public int 血量 {  get; set; }
+        public int 饱腹值 { get; set; }
         public I背包 背包 { get; set; }
+        public string 展示文本();
     }
     public interface I背包 {
         public int Width { get; set; }

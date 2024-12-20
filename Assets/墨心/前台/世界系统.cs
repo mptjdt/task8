@@ -7,6 +7,7 @@ namespace 墨心 {
     public class 世界系统 {
         public Dictionary<Vector2Int, GameObject> 所有矿石 = new();
         public Dictionary<Vector2Int, GameObject> 所有土质 = new();
+        public Dictionary<Vector2Int, GameObject> 所有建筑 = new();
         public GameObject 玩家;
         public void 创建玩家(I角色 X) {
             玩家 = new GameObject("Player");
@@ -29,6 +30,14 @@ namespace 墨心 {
                 所有矿石[Z.坐标].transform.position = new Vector3(X, Y, 0);
                 所有矿石[Z.坐标].AddComponent<SpriteRenderer>().sprite = LoadSprite(Z.矿石层.类型.ToString());
                 所有矿石[Z.坐标].GetComponent<SpriteRenderer>().sortingOrder = 1;
+            }
+        }
+        public void 创建建筑层(int X, int Y, I地块 Z) {
+            if (Z.建筑层 != null) {
+                所有建筑[Z.坐标] = new GameObject("建筑层_" + X + "_" + Y);
+                所有建筑[Z.坐标].transform.position = new Vector3(X, Y, 0);
+                所有建筑[Z.坐标].AddComponent<SpriteRenderer>().sprite = LoadSprite(Z.建筑层.类型.ToString());
+                所有建筑[Z.坐标].GetComponent<SpriteRenderer>().sortingOrder = 2;
             }
         }
     }

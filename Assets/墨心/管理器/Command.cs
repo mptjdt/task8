@@ -23,8 +23,8 @@ namespace 墨心 {
         public static void 帧右移() {
             PlayerMove(new Vector2(后台世界.Player.移动速度 * Time.deltaTime, 0), 270f);
         }
-        public static void 开采地块(int X,int Y) {
-            后台世界[X,Y].开采();
+        public static void 开采地块(int X, int Y) {
+            后台世界[X, Y].开采();
         }
         public static string 查询地块(int X, int Y) {
             return 后台世界[X, Y].展示文本();
@@ -32,6 +32,15 @@ namespace 墨心 {
         public static void 切换背包() {
             笔记.背包是否打开 = !笔记.背包是否打开;
             UI.打开背包(笔记.背包是否打开);
+        }
+        public static void 扣除血量(int X) {
+            后台世界.Player.血量 = Math.Max(后台世界.Player.血量 - X, 0);
+            if (后台世界.Player.血量 == 0) {
+                Event.游戏结束();
+            }
+        }
+        public static void 扣除饱腹值(int X) {
+            后台世界.Player.饱腹值 = Math.Max(后台世界.Player.饱腹值 - X, 0);
         }
         private static void PlayerMove(Vector2 X, float 目标方向) {
             后台世界.Player.坐标 += X;

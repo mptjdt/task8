@@ -15,13 +15,29 @@ namespace 墨心 {
         public static void 地块采集成功(Vector2Int X) {
             当地块采集成功?.Invoke(X);
         }
+        public static event Action 当获得种子;
+        public static void 获得种子() {
+            当获得种子?.Invoke();
+        }
+        public static event Action<Vector2Int> 当树木颤抖;
+        public static void 树木颤抖(Vector2Int X) {
+            当树木颤抖?.Invoke(X);
+        }
         public static event Action<I背包> 当背包更新;
         public static void 背包更新(I背包 X) {
             当背包更新?.Invoke(X);
         }
+        public static event Action 当显示角色信息;
+        public static void 显示角色信息() {
+            当显示角色信息?.Invoke();
+        }
         public static event Action 当游戏退出;
         public static void 游戏退出() {
             当游戏退出?.Invoke();
+        }
+        public static event Action 当游戏结束;
+        public static void 游戏结束() {
+            当游戏结束?.Invoke();
         }
     }
 }

@@ -41,6 +41,7 @@ namespace 墨心 {
         虚空,
         沙漠,
         淡水,
+        草地
     }
     public enum 悬浮种类 {
         无,

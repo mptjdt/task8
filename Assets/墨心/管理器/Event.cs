@@ -8,7 +8,7 @@ namespace 墨心.Task8 {
             当角色坐标更新?.Invoke(position, rotation);//人物移动
         }
         public static event Action<Vector2Int> 当地块采光;
-        public static void 地块采光(Vector2Int X) {
+        public static void 地块矿石采光(Vector2Int X) {
             当地块采光?.Invoke(X);
         }
         public static event Action<Vector2Int> 当地块采集成功;
@@ -27,13 +27,9 @@ namespace 墨心.Task8 {
         public static void 背包更新(I背包 X) {
             当背包更新?.Invoke(X);
         }
-        public static event Action 当显示角色信息;
-        public static void 显示角色信息() {
-            当显示角色信息?.Invoke();
-        }
-        public static event Action 当游戏结束;
-        public static void 游戏结束() {
-            当游戏结束?.Invoke();
+        public static event Action 当玩家死亡;
+        public static void 玩家死亡() {
+            当玩家死亡?.Invoke();
         }
     }
 }

@@ -85,7 +85,6 @@ namespace 墨心.Task8 {
                 if (后台世界.Player.饱腹值 == 0) {
                     血量计时器.Update(1f, () => Command.扣除血量(1));
                 }
-                Event.显示角色信息();
             });
         }
         public static void 订阅事件流程() {
@@ -125,13 +124,13 @@ namespace 墨心.Task8 {
             Event.当背包更新 += (X) => {
                 UI.更新背包显示(X);
             };
-            Event.当显示角色信息 += () => {
+            OnAppUpdate(() => {
                 UI.角色面板.GetComponentInChildren<Text>().text = 后台世界.Player.展示文本();
-            };
+            });
             OnAppDestroy(() => {
                 存档管理器.存档();
             });
-            Event.当游戏结束 += () => {
+            Event.当玩家死亡 += () => {
                 #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
                 #else

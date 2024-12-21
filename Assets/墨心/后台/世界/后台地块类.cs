@@ -9,35 +9,39 @@ namespace 墨心.Task8 {
         public I地板层 地板层 { get; set; }
         public I建筑层 建筑层 { get; set; }
         public I悬浮层 悬浮层 { get; set; }
-        public void 开采() {
-            if (矿石层 != null) {
-                if (矿石层.数量 > 0) {
-                    矿石层.数量 -= 1;
-                    Event.地块采集成功(坐标);
-                }
-                if (矿石层.数量 == 0) {
-                    矿石层 = null;
-                    Event.地块采光(坐标);
-                }
+        public void 开采矿物() {
+            if (矿石层 == null) {
+                return;
             }
-            if (建筑层 != null) {
-                if (建筑层.数量 > 0) {
-                    建筑层.数量 -= 2;
-                    Event.树木颤抖(坐标);
-                    Event.地块采集成功(坐标);
-                }
-                if (建筑层.数量 == 0) {
-                    if (UnityEngine.Random.value < 0.6f) {
-                        Event.获得种子();
-                    }
-                    建筑层 = null;
-                    Event.地块采光(坐标);
-                }
+            if (矿石层.数量 > 0) {
+                矿石层.数量 -= 1;
+                Event.地块采集成功(坐标);
+            }
+            if (矿石层.数量 == 0) {
+                矿石层 = null;
+                Event.地块矿石采光(坐标);
+            }
+        }
+        public void 拆除建筑() {
+            if (建筑层 == null) {
+                return;
+            }
+            if (建筑层.耐久 > 0) {
+                建筑层.耐久 -= 1;
+                Event.建筑受伤(坐标);
+            }
+            if (建筑层.耐久 == 0) {
+                建筑层.类型.掉落();
+                //if (Random.value < 0.6f) {
+                //    Event.获得种子();
+                //}
+                建筑层 = null;
+                Event.地块建筑被毁(坐标);
             }
         }
         public string 展示文本() {
             if (建筑层 != null) {
-                return $"地块类型: {建筑层.类型}\n数量: {建筑层.数量}";
+                return $"地块类型: {建筑层.类型}\n数量: {建筑层.耐久}";
             }
             if (矿石层 != null) {
                 return $"地块类型: {矿石层.类型}\n数量: {矿石层.数量}";

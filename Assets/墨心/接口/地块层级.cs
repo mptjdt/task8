@@ -10,7 +10,7 @@ namespace 墨心.Task8 {
     }
     public interface I建筑层 : I层级 {
         public 建筑种类 类型 { get; set; }
-        public int 数量 { get; set; }
+        public int 耐久 { get; set; }
     }
     public interface I矿石层 : I层级 {
         public 矿石种类 类型 { get; set; }

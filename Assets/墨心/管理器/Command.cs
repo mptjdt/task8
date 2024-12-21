@@ -37,7 +37,7 @@ namespace 墨心.Task8 {
         public static void 扣除血量(int X) {
             后台世界.Player.血量 = Math.Max(后台世界.Player.血量 - X, 0);
             if (后台世界.Player.血量 == 0) {
-                Event.游戏结束();
+                Event.玩家死亡();
             }
         }
         public static void 扣除饱腹值(int X) {

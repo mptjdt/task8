@@ -83,7 +83,7 @@ namespace 墨心.Task8 {
                 }
                 饱腹值计时器.Update(3f, () => Command.扣除饱腹值(1));
                 if (后台世界.Player.饱腹值 == 0) {
-                    血量计时器.Update(1f, () => Command.扣除血量(1));
+                    血量计时器.Update(1f, () => 后台世界.Player.掉血(1));
                 }
             });
         }

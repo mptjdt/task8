@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static 墨心.GameManager;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 后台背包类 : I背包 {
         public List<I物品> 物品列表 { get; set; }
         public int Width { get; set; }

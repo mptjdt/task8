@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using static 墨心.GameManager;
+using static 墨心.Task8.GameManager;
 using UnityEngine.UI;
 using static UnityEngine.Object;
 using System;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     /// <summary>
     /// 指令分为三类：
     /// 1.命令。修改后台

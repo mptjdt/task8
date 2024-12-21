@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public interface I层级 {
 
     }

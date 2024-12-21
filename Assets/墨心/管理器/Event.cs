@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System; // 用于 Action 和事件定义
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class Event {
         public static event Action<Vector2, float> 当角色坐标更新;
         public static void 角色坐标更新(Vector2 position, float rotation) {
@@ -30,10 +30,6 @@ namespace 墨心 {
         public static event Action 当显示角色信息;
         public static void 显示角色信息() {
             当显示角色信息?.Invoke();
-        }
-        public static event Action 当游戏退出;
-        public static void 游戏退出() {
-            当游戏退出?.Invoke();
         }
         public static event Action 当游戏结束;
         public static void 游戏结束() {

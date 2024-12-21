@@ -4,11 +4,12 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Object;
+using static 墨心.GameManager;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 世界设定类 {
         public int 宽度 = 10;
         public int 高度 = 10;
@@ -86,9 +87,6 @@ namespace 墨心 {
                 }
                 Event.显示角色信息();
             });
-            OnAppDestroy(() => {
-                Event.游戏退出();
-            });
         }
         public static void 订阅事件流程() {
             Event.当角色坐标更新 += (X, Y) => {
@@ -130,9 +128,9 @@ namespace 墨心 {
             Event.当显示角色信息 += () => {
                 UI.角色面板.GetComponentInChildren<Text>().text = 后台世界.Player.展示文本();
             };
-            Event.当游戏退出 += () => {
+            OnAppDestroy(() => {
                 存档管理器.存档();
-            };           
+            });
             Event.当游戏结束 += () => {
                 #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;

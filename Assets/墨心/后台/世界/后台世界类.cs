@@ -2,7 +2,7 @@
 using UnityEngine;
 using static 墨心.GameManager;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 后台世界类 : I世界 {
         public I地块[,] Grid;
         public I地块 this[int x, int y] {

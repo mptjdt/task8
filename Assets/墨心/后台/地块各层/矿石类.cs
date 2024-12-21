@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 矿石类 : I矿石层 {
         public 矿石种类 类型 { get; set; }
         public int 数量 { get; set; }

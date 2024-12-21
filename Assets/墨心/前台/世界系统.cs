@@ -3,7 +3,7 @@ using System.Diagnostics;
 using static 墨心.GameManager;
 using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 世界系统 {
         public Dictionary<Vector2Int, GameObject> 所有矿石 = new();
         public Dictionary<Vector2Int, GameObject> 所有土质 = new();

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public static partial class GameManager {
         public static Vector2Int 获取后台坐标(Vector2 screenPosition) {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);

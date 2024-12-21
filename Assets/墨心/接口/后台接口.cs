@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public interface I世界 {
         public I地块 this[int X, int Y] { get; }
         public int Width { get; }

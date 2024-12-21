@@ -4,14 +4,14 @@ using UnityEngine;
 namespace 墨心 {
     public static partial class GameManager {
         public static Action OnAppUpdateCallback;
-        public static void OnAppUpdate(Action callback) {
+        public static void OnAppUpdate(Action X) {
             EnsureLifeLineComponent();
-            OnAppUpdateCallback += callback;
+            OnAppUpdateCallback += X;
         }
         public static Action OnAppDestroyCallback;
-        public static void OnAppDestroy(Action callback) {
+        public static void OnAppDestroy(Action X) {
             EnsureLifeLineComponent();
-            OnAppDestroyCallback += callback;
+            OnAppDestroyCallback += X;
         }
         private static void EnsureLifeLineComponent() {
             if (MainCamera.GetComponent<LifeLine>() == null) {
@@ -20,11 +20,11 @@ namespace 墨心 {
         }
     }
     public class LifeLine : MonoBehaviour {
-        void Update() {
-            墨心.GameManager.OnAppUpdateCallback?.Invoke();
+        public void Update() {
+            GameManager.OnAppUpdateCallback?.Invoke();
         }
-        void OnDestroy() {
-            墨心.GameManager.OnAppDestroyCallback?.Invoke();
+        public void OnDestroy() {
+            GameManager.OnAppDestroyCallback?.Invoke();
         }
     }
 }

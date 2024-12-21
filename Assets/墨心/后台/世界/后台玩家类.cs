@@ -2,7 +2,7 @@
 using System.Dynamic;
 using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 后台玩家类 : I角色 {
         public Vector2 坐标 { get; set; }
         public float 旋转角度 { get; set; }

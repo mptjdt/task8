@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class 后台地块类 : I地块 {
         public Vector2Int 坐标 { get; set; }
         public I土质层 土质层 { get; set; }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public static partial class GameManager {
         public static 后台世界类 后台世界 = new();
         public static 世界系统 前台世界 = new();

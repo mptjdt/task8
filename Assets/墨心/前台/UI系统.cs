@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static 墨心.GameManager;
 
-namespace 墨心 {
+namespace 墨心.Task8 {
     public class UI系统 {
         public GameObject 信息面板;
         public Dictionary<int, GameObject> 所有物品 = new();

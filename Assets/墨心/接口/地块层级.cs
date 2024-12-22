@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace 墨心.Task8 {
     public interface I层级 {
@@ -45,5 +48,23 @@ namespace 墨心.Task8 {
     }
     public enum 悬浮种类 {
         无,
+    }
+    public static class 建筑种类Extensions {
+        public static string 掉落(this 建筑种类 A) {
+            switch (A) {
+                case 建筑种类.无:
+                    break;
+                case 建筑种类.树木:
+                    if (UnityEngine.Random.value <= 0.6f) {
+                        return "种子";
+                    }
+                    break;
+                case 建筑种类.箱子:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return null;
+        }
     }
 }

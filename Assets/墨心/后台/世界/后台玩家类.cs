@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
 
@@ -13,6 +14,15 @@ namespace 墨心.Task8 {
         public I背包 背包 { get; set; }
         public string 展示文本() {
             return $"饱腹值: {饱腹值}\n血量: {血量}";
+        }
+        public  void 掉血(int X) {
+            血量 = Math.Max(血量 - X, 0);
+            if (血量 == 0) {
+                Event.玩家死亡();
+            }
+        }
+        public  void 扣除饱腹值(int X) {
+            饱腹值 = Math.Max(饱腹值 - X, 0);
         }
     }
 }

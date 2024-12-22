@@ -5,7 +5,7 @@ namespace 墨心.Task8 {
         public static I建筑层 创建树木地块() {
             var A = new 建筑类();
             A.类型 = 建筑种类.树木;
-            A.耐久 = 10;
+            A.耐久 = 5;
             return A;
         }
     }

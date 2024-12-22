@@ -15,7 +15,8 @@ namespace 墨心.Task8 {
         public I地板层 地板层 { get; set; }
         public I建筑层 建筑层 { get; set; }
         public I悬浮层 悬浮层 { get; set; }
-        public void 开采();
+        public void 开采矿物();
+        public void 拆除建筑();
         public string 展示文本();
     }
     public interface I角色 {
@@ -27,6 +28,8 @@ namespace 墨心.Task8 {
         public int 饱腹值 { get; set; }
         public I背包 背包 { get; set; }
         public string 展示文本();
+        public void 掉血(int X);
+        public void 扣除饱腹值(int X);
     }
     public interface I背包 {
         public int Width { get; set; }

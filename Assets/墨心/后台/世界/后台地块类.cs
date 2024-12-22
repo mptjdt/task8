@@ -31,10 +31,9 @@ namespace 墨心.Task8 {
                 Event.建筑受伤(坐标);
             }
             if (建筑层.耐久 == 0) {
-                建筑层.类型.掉落();
-                //if (Random.value < 0.6f) {
-                //    Event.获得种子();
-                //}
+                if (建筑层.类型.掉落() != null) {
+                    Event.建筑掉落(坐标);
+                }
                 建筑层 = null;
                 Event.地块建筑被毁(坐标);
             }

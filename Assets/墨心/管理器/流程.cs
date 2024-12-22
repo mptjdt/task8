@@ -48,13 +48,25 @@ namespace 墨心.Task8 {
                 }
             }
             前台世界.创建玩家(后台世界.Player);
-            OnAppUpdate(() => MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10));
+            OnAppUpdate(() => {
+                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
+                饱腹值计时器.Update(3f, () => 后台世界.Player.扣除饱腹值(1));
+                if (后台世界.Player.饱腹值 == 0) {
+                    血量计时器.Update(1f, () => 后台世界.Player.掉血(1));
+                }
+            });
+            OnAppDestroy(() => {
+                存档管理器.存档();
+            });
         }
         public static void 绘制UI流程() {
             UI.创建信息面板();
             UI.创建角色面板();
             UI.创建背包面板(后台世界.Player.背包.Width, 后台世界.Player.背包.Height, 笔记.背包是否打开);
             UI.更新背包显示(后台世界.Player.背包);
+            OnAppUpdate(() => {
+                UI.角色面板.GetComponentInChildren<Text>().text = 后台世界.Player.展示文本();
+            });          
         }
         public static void 注册指令流程() {
             OnAppUpdate(() => {
@@ -80,11 +92,7 @@ namespace 墨心.Task8 {
                 if (Input.GetMouseButtonDown(0)) {
                     var A = 获取后台坐标(Input.mousePosition);
                     UI.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(A.x, A.y);
-                }
-                饱腹值计时器.Update(3f, () => Command.扣除饱腹值(1));
-                if (后台世界.Player.饱腹值 == 0) {
-                    血量计时器.Update(1f, () => 后台世界.Player.掉血(1));
-                }
+                }               
             });
         }
         public static void 订阅事件流程() {
@@ -95,41 +103,35 @@ namespace 墨心.Task8 {
             Event.当地块采集成功 += (X) => {
                 if (后台世界[X.x, X.y].矿石层 != null) {
                     后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].矿石层.类型.ToString(), 数量 = 1 });
-                }
-                if (后台世界[X.x, X.y].建筑层 != null) {
-                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].建筑层.类型.ToString(), 数量 = 2 });
-                }
-                Event.背包更新(后台世界.Player.背包);
+                }              
+                UI.更新背包显示(后台世界.Player.背包);
             };
             Event.当地块采光 += (X) => {
                 if (前台世界.所有矿石.TryGetValue(X, out GameObject A)) {
                     前台世界.所有矿石.Remove(X);
                     Destroy(A);
                     Print($"地块 {X.x}-{X.y} 采光！");
+                }               
+            };
+            Event.当建筑受伤 += (X) => {
+                if (后台世界[X.x, X.y].建筑层 != null) {
+                    前台世界.所有建筑.TryGetValue(X, out GameObject A);
+                    A.Tremble();
+                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].建筑层.类型.ToString(), 数量 = 2 });
                 }
-                if (前台世界.所有建筑.TryGetValue(X, out GameObject B)) {
+                UI.更新背包显示(后台世界.Player.背包);
+            };
+            Event.当地块建筑被毁 += (X) => {
+                if (前台世界.所有建筑.TryGetValue(X, out GameObject A)) {
                     前台世界.所有建筑.Remove(X);
-                    Destroy(B);
-                    Print($"地块 {X.x}-{X.y} 采光！");
+                    Destroy(A);
+                    Print($"地块建筑 {X.x}-{X.y} 被毁！");
                 }
             };
-            Event.当获得种子 += () => {
-                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = "种子", 数量 = 1 });
-                Event.背包更新(后台世界.Player.背包);
+            Event.当建筑掉落 += (X) => {
+                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].建筑层.类型.掉落(), 数量 = 1 });
+                UI.更新背包显示(后台世界.Player.背包);
             };
-            Event.当树木颤抖 += (X) => {
-                前台世界.所有建筑.TryGetValue(X, out GameObject A);
-                A.Tremble();
-            };
-            Event.当背包更新 += (X) => {
-                UI.更新背包显示(X);
-            };
-            OnAppUpdate(() => {
-                UI.角色面板.GetComponentInChildren<Text>().text = 后台世界.Player.展示文本();
-            });
-            OnAppDestroy(() => {
-                存档管理器.存档();
-            });
             Event.当玩家死亡 += () => {
                 #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
@@ -137,6 +139,14 @@ namespace 墨心.Task8 {
                 Application.Quit();
                 #endif
             };
+            ///Event.当获得种子 += () => {
+            ///后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = "种子", 数量 = 1 });
+            ///Event.背包更新(后台世界.Player.背包);
+            ///};
+            ///Event.当树木颤抖 += (X) => {
+            ///前台世界.所有建筑.TryGetValue(X, out GameObject A);
+            ///A.Tremble();
+            ///};
         }
     }
 }

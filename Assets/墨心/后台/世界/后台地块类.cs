@@ -15,11 +15,11 @@ namespace 墨心.Task8 {
             }
             if (矿石层.数量 > 0) {
                 矿石层.数量 -= 1;
-                Event.地块采集成功(坐标);
+                Event.地块采集成功(this);
             }
             if (矿石层.数量 == 0) {
                 矿石层 = null;
-                Event.地块矿石采光(坐标);
+                Event.地块矿石采光(this);
             }
         }
         public void 拆除建筑() {
@@ -28,14 +28,13 @@ namespace 墨心.Task8 {
             }
             if (建筑层.耐久 > 0) {
                 建筑层.耐久 -= 1;
-                Event.建筑受伤(坐标);
+                Event.建筑受伤(this);
             }
             if (建筑层.耐久 == 0) {
-                if (建筑层.类型.掉落() != null) {
-                    Event.建筑掉落(坐标);
-                }
+                悬浮层 = 建筑层.类型.掉落().To悬浮();//掉落文本格式：XX*X XX*X
+                Event.建筑掉落(this);
                 建筑层 = null;
-                Event.地块建筑被毁(坐标);
+                Event.地块建筑被毁(this);
             }
         }
         public string 展示文本() {

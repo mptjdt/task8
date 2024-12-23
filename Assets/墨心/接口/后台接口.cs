@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace 墨心.Task8 {
     public interface I世界 {
-        public I地块 this[int X, int Y] { get; }
+        public I地块 this[int X, int Y] { get; set; }
         public int Width { get; }
         public int Height { get; }
         public I角色 Player { get; set; }
@@ -32,8 +32,8 @@ namespace 墨心.Task8 {
         public void 扣除饱腹值(int X);
     }
     public interface I背包 {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        //public int Width { get; set; }
+        //public int Height { get; set; }
         public List<I物品> 物品列表 { get; set; }
         public void 创建背包(int X, int Y);
         public bool 添加物品(I物品 X);

@@ -45,12 +45,15 @@ namespace 墨心.Task8 {
         public static void 绘制世界流程() {
             for (int i = 0; i < 后台世界.Width; i++) {
                 for (int j = 0; j < 后台世界.Height; j++) {
-                    前台世界.创建土质层(i, j, 后台世界.Grid[i, j]);
-                    前台世界.创建矿石层(i, j, 后台世界.Grid[i, j]);
-                    前台世界.创建建筑层(i, j, 后台世界.Grid[i, j]);
+                    前台世界.创建土质层(i, j, 后台世界[i, j]);
+                    前台世界.创建矿石层(i, j, 后台世界[i, j]);
+                    前台世界.创建建筑层(i, j, 后台世界[i, j]);
                 }
             }
             前台世界.创建玩家(后台世界.Player);
+            OnAppUpdate(() => {
+                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
+            });
         }
         public static void 绘制UI流程() {
             UI.创建信息面板();
@@ -89,9 +92,6 @@ namespace 墨心.Task8 {
             });
         }
         public static void 订阅事件流程() {
-            OnAppUpdate(() => {
-                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
-            });
             OnAppDestroy(() => {
                 存档管理器.存档();
             });

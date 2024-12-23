@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -23,8 +24,7 @@ namespace 墨心.Task8 {
         public 土质种类 类型 { get; set; }
     }
     public interface I悬浮层 : I层级 {
-        public 悬浮种类 类型 { get; set; }
-        public int 数量 { get; set; }
+        public Dictionary<string,int> 道具们 { get; set; }
     }
     public enum 地板种类 {
         无,

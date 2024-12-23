@@ -1860,30 +1860,30 @@
     "$type": "墨心.Task8.后台玩家类, Assembly-CSharp",
     "坐标": {
       "$type": "UnityEngine.Vector2, UnityEngine.CoreModule",
-      "x": 5.30440664,
-      "y": 2.3647294,
+      "x": 4.737223,
+      "y": 6.22881746,
       "normalized": {
         "$type": "UnityEngine.Vector2, UnityEngine.CoreModule",
-        "x": 0.9133498,
-        "y": 0.40717566,
+        "x": 0.6053523,
+        "y": 0.7959576,
         "normalized": {
           "$type": "UnityEngine.Vector2, UnityEngine.CoreModule",
-          "x": 0.913349867,
-          "y": 0.4071757,
+          "x": 0.605352342,
+          "y": 0.7959577,
           "magnitude": 1.0,
-          "sqrMagnitude": 1.0
+          "sqrMagnitude": 1.00000012
         },
         "magnitude": 0.99999994,
-        "sqrMagnitude": 0.9999999
+        "sqrMagnitude": 0.99999994
       },
-      "magnitude": 5.8076396,
-      "sqrMagnitude": 33.7286758
+      "magnitude": 7.825564,
+      "sqrMagnitude": 61.23945
     },
-    "旋转角度": -167.228958,
+    "旋转角度": -8.449034,
     "移动速度": 5.0,
     "旋转速度": 5.0,
     "血量": 100,
-    "饱腹值": 88,
+    "饱腹值": 69,
     "背包": {
       "$type": "墨心.Task8.后台背包类, Assembly-CSharp",
       "物品列表": [

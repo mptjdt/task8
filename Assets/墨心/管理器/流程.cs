@@ -15,10 +15,13 @@ namespace 墨心.Task8 {
         public int 高度 = 10;
         public int 铜矿尺寸 = 3;
         public int 铜矿数量 = 3;
+        public 玩家设定类 玩家设定 = new();
+    }
+    public class 玩家设定类 {
         public int 玩家移速 = 5;
         public int 玩家转速 = 5;
         public int 玩家血量 = 100;
-        public int 玩家饱腹值=100;
+        public int 玩家饱腹值 = 100;
         public int 背包宽度 = 4;
         public int 背包高度 = 5;
     }
@@ -33,8 +36,8 @@ namespace 墨心.Task8 {
             后台世界.填充草地();
             后台世界.种植树木();
             后台世界.洒下几堆铜矿(X.铜矿尺寸, X.铜矿数量);
-            后台世界.创建玩家(X.玩家移速, X.玩家转速,X.玩家血量,X.玩家饱腹值);
-            后台世界.Player.背包.创建背包(X.背包宽度, X.背包高度);
+            后台世界.创建玩家(X.玩家设定);
+            //后台世界.Player.背包.创建背包(X.背包宽度, X.背包高度);
         }
         public static void 创建笔记流程(笔记设定类 X) {
             笔记.背包是否打开 = X.背包是否打开;
@@ -48,16 +51,6 @@ namespace 墨心.Task8 {
                 }
             }
             前台世界.创建玩家(后台世界.Player);
-            OnAppUpdate(() => {
-                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
-                饱腹值计时器.Update(3f, () => 后台世界.Player.扣除饱腹值(1));
-                if (后台世界.Player.饱腹值 == 0) {
-                    血量计时器.Update(1f, () => 后台世界.Player.掉血(1));
-                }
-            });
-            OnAppDestroy(() => {
-                存档管理器.存档();
-            });
         }
         public static void 绘制UI流程() {
             UI.创建信息面板();
@@ -66,7 +59,7 @@ namespace 墨心.Task8 {
             UI.更新背包显示(后台世界.Player.背包);
             OnAppUpdate(() => {
                 UI.角色面板.GetComponentInChildren<Text>().text = 后台世界.Player.展示文本();
-            });          
+            });
         }
         public static void 注册指令流程() {
             OnAppUpdate(() => {
@@ -92,10 +85,16 @@ namespace 墨心.Task8 {
                 if (Input.GetMouseButtonDown(0)) {
                     var A = 获取后台坐标(Input.mousePosition);
                     UI.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(A.x, A.y);
-                }               
+                }
             });
         }
         public static void 订阅事件流程() {
+            OnAppUpdate(() => {
+                MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
+            });
+            OnAppDestroy(() => {
+                存档管理器.存档();
+            });
             Event.当角色坐标更新 += (X, Y) => {
                 前台世界.玩家.transform.position = X;
                 前台世界.玩家.transform.rotation = Quaternion.Euler(0, 0, Y);
@@ -103,7 +102,7 @@ namespace 墨心.Task8 {
             Event.当地块采集成功 += (X) => {
                 if (后台世界[X.x, X.y].矿石层 != null) {
                     后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].矿石层.类型.ToString(), 数量 = 1 });
-                }              
+                }
                 UI.更新背包显示(后台世界.Player.背包);
             };
             Event.当地块采光 += (X) => {
@@ -111,7 +110,7 @@ namespace 墨心.Task8 {
                     前台世界.所有矿石.Remove(X);
                     Destroy(A);
                     Print($"地块 {X.x}-{X.y} 采光！");
-                }               
+                }
             };
             Event.当建筑受伤 += (X) => {
                 if (后台世界[X.x, X.y].建筑层 != null) {
@@ -133,11 +132,11 @@ namespace 墨心.Task8 {
                 UI.更新背包显示(后台世界.Player.背包);
             };
             Event.当玩家死亡 += () => {
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
-                #else
+#else
                 Application.Quit();
-                #endif
+#endif
             };
             ///Event.当获得种子 += () => {
             ///后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = "种子", 数量 = 1 });

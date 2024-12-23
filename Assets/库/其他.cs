@@ -21,12 +21,12 @@ namespace 墨心 {
         }
     }
     public class Timer {
-        private float elapsedTime = 0f;
-        public void Update(float interval, Action callback) {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime >= interval) {
-                callback?.Invoke();
-                elapsedTime = 0f;
+        private float 当前时间 = 0f;
+        public void Update(float X, Action Y) {
+            当前时间 += Time.deltaTime;
+            if (当前时间 >= X) {
+                Y?.Invoke();
+                当前时间 = 0f;
             }
         }
     }

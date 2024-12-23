@@ -66,6 +66,7 @@ namespace 墨心.Task8 {
             Player.血量 = 玩家血量;
             Player.饱腹值 = 玩家饱腹值;
             Player.背包 = new 后台背包类();
+            Player.注册每帧行为();
         }
     }
 }

@@ -26,12 +26,17 @@ namespace 墨心.Task8 {
             角色面板.SetText("");
         }
         public void 更新背包显示(I背包 X) {
-            背包面板.Clear();
-            for (int i = 0; i < X.物品列表.Count; i++) {
-                背包面板.创建矩形().SetColor(Color.gray).SetSprite("背包" + X.物品列表[i].名称);
+            for (int i = 0; i < X.Width * X.Height; i++) {
+                所有物品[i] = 背包面板.transform.GetChild(i).gameObject;
+                if (X.物品列表[i] != null) {
+                    所有物品[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X.物品列表[i].名称);
+                }
+                //背包面板.Clear();
+                //for (int i = 0; i < X.物品列表.Count; i++) {
+                //背包面板.创建矩形().SetColor(Color.gray).SetSprite("背包" + X.物品列表[i].名称);
             }
         }
-        public void 打开背包(bool X) {
+        public void 开关背包(bool X) {
             背包面板.SetActive(X);
         }
     }

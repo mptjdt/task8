@@ -7,10 +7,10 @@ using static 墨心.GameManager;
 using static 墨心.Task8.GameManager;
 
 namespace 墨心.Task8 {
-    public class 存档管理器 {
+    public class 存档管理 {
         private string 世界文件路径;
         private string 笔记文件路径;
-        public 存档管理器() {
+        public 存档管理() {
             if (Application.isEditor) {
                 世界文件路径 = Path.Combine(Application.dataPath, "worldFile.json");
                 笔记文件路径 = Path.Combine(Application.dataPath, "notesFile.json");

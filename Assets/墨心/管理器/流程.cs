@@ -5,9 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Object;
 using static 墨心.GameManager;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace 墨心.Task8 {
     public class 世界设定类 {
@@ -37,7 +34,7 @@ namespace 墨心.Task8 {
             后台世界.种植树木();
             后台世界.洒下几堆铜矿(X.铜矿尺寸, X.铜矿数量);
             后台世界.创建玩家(X.玩家设定);
-            //后台世界.Player.背包.创建背包(X.背包宽度, X.背包高度);
+            后台世界.Player.背包.创建背包(X.玩家设定.背包宽度, X.玩家设定.背包高度);
         }
         public static void 创建笔记流程(笔记设定类 X) {
             笔记.背包是否打开 = X.背包是否打开;
@@ -53,6 +50,9 @@ namespace 墨心.Task8 {
             前台世界.创建玩家(后台世界.Player);
             OnAppUpdate(() => {
                 MainCamera.transform.position = new Vector3(前台世界.玩家.transform.position.x, 前台世界.玩家.transform.position.y, -10);
+            });
+            OnAppDestroy(() => {
+                存档管理器.存档();
             });
         }
         public static void 绘制UI流程() {
@@ -90,62 +90,6 @@ namespace 墨心.Task8 {
                     UI.信息面板.GetComponentInChildren<Text>().text = Command.查询地块(A.x, A.y);
                 }
             });
-        }
-        public static void 订阅事件流程() {
-            OnAppDestroy(() => {
-                存档管理器.存档();
-            });
-            Event.当角色坐标更新 += (X, Y) => {
-                前台世界.玩家.transform.position = X;
-                前台世界.玩家.transform.rotation = Quaternion.Euler(0, 0, Y);
-            };
-            Event.当地块采集成功 += (X) => {
-                if (后台世界[X.x, X.y].矿石层 != null) {
-                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].矿石层.类型.ToString(), 数量 = 1 });
-                }
-                UI.更新背包显示(后台世界.Player.背包);
-            };
-            Event.当地块采光 += (X) => {
-                if (前台世界.所有矿石.TryGetValue(X, out GameObject A)) {
-                    前台世界.所有矿石.Remove(X);
-                    Destroy(A);
-                    Print($"地块 {X.x}-{X.y} 采光！");
-                }
-            };
-            Event.当建筑受伤 += (X) => {
-                if (后台世界[X.x, X.y].建筑层 != null) {
-                    前台世界.所有建筑.TryGetValue(X, out GameObject A);
-                    A.Tremble();
-                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].建筑层.类型.ToString(), 数量 = 2 });
-                }
-                UI.更新背包显示(后台世界.Player.背包);
-            };
-            Event.当地块建筑被毁 += (X) => {
-                if (前台世界.所有建筑.TryGetValue(X, out GameObject A)) {
-                    前台世界.所有建筑.Remove(X);
-                    Destroy(A);
-                    Print($"地块建筑 {X.x}-{X.y} 被毁！");
-                }
-            };
-            Event.当建筑掉落 += (X) => {
-                后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = 后台世界[X.x, X.y].建筑层.类型.掉落(), 数量 = 1 });
-                UI.更新背包显示(后台世界.Player.背包);
-            };
-            Event.当玩家死亡 += () => {
-#if UNITY_EDITOR
-                EditorApplication.isPlaying = false;
-#else
-                Application.Quit();
-#endif
-            };
-            ///Event.当获得种子 += () => {
-            ///后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = "种子", 数量 = 1 });
-            ///Event.背包更新(后台世界.Player.背包);
-            ///};
-            ///Event.当树木颤抖 += (X) => {
-            ///前台世界.所有建筑.TryGetValue(X, out GameObject A);
-            ///A.Tremble();
-            ///};
         }
     }
 }

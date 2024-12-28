@@ -7,6 +7,9 @@ namespace 墨心.Task8 {
         private I地块[,] Grid;
         public I地块 this[int x, int y] {
             get => Grid[x, y];
+            set {
+                Grid[x, y] = value;
+            }
         }
         public int Width => Grid.GetLength(0);
         public int Height => Grid.GetLength(1);
@@ -16,7 +19,7 @@ namespace 墨心.Task8 {
             Grid = new 后台地块类[宽度, 高度];
             for (int i = 0; i < 宽度; i++) {
                 for (int j = 0; j < 高度; j++) {
-                    Grid[i, j] = new 后台地块类 { 坐标 = new Vector2Int(i, j) };
+                    this[i, j] = new 后台地块类 { 坐标 = new Vector2Int(i, j) };
                 }
             }
         }
@@ -27,15 +30,16 @@ namespace 墨心.Task8 {
             }
         }
         private void 传染铜矿(int X, int Y, int 剩余传染次数) {
-            if (剩余传染次数 <= 0 || X < 0 || Y < 0 || X >= Width || Y >= Height) return;
-            Grid[X, Y].矿石层 = 矿石类.创建铜矿地块();
+            if (剩余传染次数 <= 0 ) return;
+            if (X < 0 || Y < 0 || X >= Width || Y >= Height) return;
+            this[X, Y].矿石层 = 矿石类.创建铜矿地块();
             传染铜矿(X + Choice(0, 1, -1), Y + Choice(0, 1, -1), 剩余传染次数 - 1);
         }
         public void 填充沙漠() {
             Print("正在填充沙漠...");
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    Grid[i, j].土质层 = 土质类.创建沙漠地块();
+                    this[i, j].土质层 = 土质类.创建沙漠地块();
                 }
             }
         }
@@ -43,8 +47,8 @@ namespace 墨心.Task8 {
             Print("正在填充草地...");
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    if (UnityEngine.Random.value < 0.4f) {
-                        Grid[i, j].土质层 = 土质类.创建草地地块();
+                    if (Random.value < 0.4f) {
+                        this[i, j].土质层 = 土质类.创建草地地块();
                     }
                 }
             }
@@ -53,18 +57,18 @@ namespace 墨心.Task8 {
             Print("正在种植树木...");
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    if (UnityEngine.Random.value < 0.04f&& Grid[i, j].土质层.类型== 土质种类.草地) {
-                        Grid[i, j].建筑层 = 建筑类.创建树木地块();
+                    if (Random.value < 0.04f&& this[i, j].土质层.类型== 土质种类.草地) {
+                        this[i, j].建筑层 = 建筑类.创建树木地块();
                     }
                 }
             }
         }
-        public void 创建玩家(int 玩家移速, int 玩家转速,int 玩家血量,int 玩家饱腹值) {
+        public void 创建玩家(玩家设定类 X) {
             Player = new 后台玩家类();
-            Player.移动速度 = 玩家移速;
-            Player.旋转速度 = 玩家转速;
-            Player.血量 = 玩家血量;
-            Player.饱腹值 = 玩家饱腹值;
+            Player.移动速度 = X.玩家移速;
+            Player.旋转速度 = X.玩家转速;
+            Player.血量 = X.玩家血量;
+            Player.饱腹值 = X.玩家饱腹值;
             Player.背包 = new 后台背包类();
             Player.注册每帧行为();
         }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using static 墨心.GameManager;
 
 namespace 墨心.Task8 {
     public interface I层级 {
@@ -46,25 +44,31 @@ namespace 墨心.Task8 {
         淡水,
         草地
     }
-    public enum 悬浮种类 {
-        无,
-    }
     public static class 建筑种类Extensions {
-        public static string 掉落(this 建筑种类 A) {
-            switch (A) {
+        public static string 掉落(this 建筑种类 X) {
+            Dictionary<string, int> 掉落道具 = new Dictionary<string, int>();
+            switch (X) {
                 case 建筑种类.无:
                     break;
                 case 建筑种类.树木:
-                    if (UnityEngine.Random.value <= 0.6f) {
-                        return "种子";
+                    if (Random.value <= 0.6f) {
+                        掉落道具["种子"] = 2;
                     }
                     break;
                 case 建筑种类.箱子:
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    Print("未知的建筑种类: " + X);
+                    break;
             }
-            return null;
+            if (掉落道具.Count == 0) {
+                return null;
+            }
+            List<string> 格式化道具 = new List<string>();
+            foreach (var A in 掉落道具) {
+                格式化道具.Add($"{A.Key}*{A.Value}");
+            }
+            return string.Join(" ", 格式化道具);
         }
     }
 }

@@ -1,9 +1,6 @@
-using System;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Threading.Tasks;
 
 namespace 墨心 {
     public static partial class GameManager {
@@ -17,16 +14,6 @@ namespace 墨心 {
             var A = obj.GetComponent<SpriteRenderer>().transform.localScale;
             for (int i = 0; i < array.Length; i++) {
                 obj.GetComponent<SpriteRenderer>().transform.localScale = Vector3.Lerp(A, A * 0.01f, array[i]);
-            }
-        }
-    }
-    public class Timer {
-        private float 当前时间 = 0f;
-        public void Update(float X, Action Y) {
-            当前时间 += Time.deltaTime;
-            if (当前时间 >= X) {
-                Y?.Invoke();
-                当前时间 = 0f;
             }
         }
     }

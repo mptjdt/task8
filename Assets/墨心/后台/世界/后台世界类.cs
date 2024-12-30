@@ -19,7 +19,7 @@ namespace 墨心.Task8 {
             Grid = new 后台地块类[宽度, 高度];
             for (int i = 0; i < 宽度; i++) {
                 for (int j = 0; j < 高度; j++) {
-                    Grid[i, j] = new 后台地块类 { 坐标 = new Vector2Int(i, j) };
+                    this[i, j] = new 后台地块类 { 坐标 = new Vector2Int(i, j) };
                 }
             }
         }
@@ -70,6 +70,7 @@ namespace 墨心.Task8 {
             Player.血量 = X.玩家血量;
             Player.饱腹值 = X.玩家饱腹值;
             Player.背包 = new 后台背包类();
+            Player.注册每帧行为();
         }
     }
 }

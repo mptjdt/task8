@@ -4,8 +4,8 @@ using UnityEngine;
 namespace 墨心.Task8 {
     public interface I世界 {
         public I地块 this[int X, int Y] { get;set; }
-        public int Width { get; }
-        public int Height { get; }
+        public int Width { get;}
+        public int Height { get;}
         public I角色 Player { get; set; }
     }
     public interface I地块 {

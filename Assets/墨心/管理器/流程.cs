@@ -8,10 +8,10 @@ using static 墨心.GameManager;
 
 namespace 墨心.Task8 {
     public class 世界设定类 {
-        public int 宽度 = 10;
-        public int 高度 = 10;
-        public int 铜矿尺寸 = 3;
-        public int 铜矿数量 = 3;
+        public int 宽度 = 100;
+        public int 高度 = 100;
+        public int 铜矿尺寸 = 10;
+        public int 铜矿数量 = 10;
         public 玩家设定类 玩家设定 = new();
     }
     public class 玩家设定类 {
@@ -38,6 +38,9 @@ namespace 墨心.Task8 {
         }
         public static void 创建笔记流程(笔记设定类 X) {
             笔记.背包是否打开 = X.背包是否打开;
+        }
+        public static void 运行世界流程() {
+            后台世界.Player.注册每帧行为();
         }
         public static void 绘制世界流程() {
             for (int i = 0; i < 后台世界.Width; i++) {

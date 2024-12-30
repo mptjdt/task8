@@ -7,9 +7,14 @@ namespace 墨心 {
         public static void FileWrite<T>(string X, T Y) {
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = TypeNameHandling.Objects,
+                 ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver {
+                     DefaultMembersSearchFlags = System.Reflection.BindingFlags.Public |
+                                        System.Reflection.BindingFlags.NonPublic |
+                                        System.Reflection.BindingFlags.Instance
+                 }
             };
-            string json = JsonConvert.SerializeObject(Y, Formatting.Indented, settings);
+            string json = JsonConvert.SerializeObject(Y, Formatting.Indented, settings);          
             try {
                 File.WriteAllText(X, json);
                 Print($"{typeof(T).Name} 保存成功！");
@@ -29,7 +34,12 @@ namespace 墨心 {
             string json = File.ReadAllText(X);
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = TypeNameHandling.Objects,
+                 ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver {
+                     DefaultMembersSearchFlags = System.Reflection.BindingFlags.Public |
+                                        System.Reflection.BindingFlags.NonPublic |
+                                        System.Reflection.BindingFlags.Instance
+                 }
             };
             try {
                 T result = JsonConvert.DeserializeObject<T>(json, settings);

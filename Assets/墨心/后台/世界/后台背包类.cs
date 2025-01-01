@@ -5,14 +5,12 @@ using static 墨心.GameManager;
 namespace 墨心.Task8 {
     public class 后台背包类 : I背包 {
         public List<I物品> 物品列表 { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public void 创建背包(int X, int Y) {
+        public int 芥子上限 { get; set; }
+        public void 创建背包(int X) {
             Print("正在创建背包...");
-            Width = X;
-            Height = Y;
+            芥子上限 = X;
             物品列表 = new List<I物品>();
-            for (int i = 0; i < X * Y; i++) {
+            for (int i = 0; i < X; i++) {
                 物品列表.Add(null);
             }
         }

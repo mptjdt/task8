@@ -33,10 +33,9 @@ namespace 墨心.Task8 {
         public void 注册每帧行为();
     }
     public interface I背包 {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int 芥子上限 { get; set; }
         public List<I物品> 物品列表 { get; set; }
-        public void 创建背包(int X, int Y);
+        public void 创建背包(int X);
         public bool 添加物品(I物品 X);
     }
     public interface I物品 {

@@ -17,17 +17,21 @@ namespace 墨心 {
         public static void SetColorDirectly(this GameObject obj, Color color) {
             obj.AddComponent<Image>().color = color;
         }
-        public static void SetGrid(this GameObject obj, int X, int Y) {
+        public static void SetGrid(this GameObject obj, int X) {
             var A = obj.GetComponent<GridLayoutGroup>();
             if (A == null) {
                 A = obj.AddComponent<GridLayoutGroup>();
             }
             var B = obj.GetComponent<RectTransform>();
+            int 列数 = Mathf.CeilToInt(Mathf.Sqrt(X));
+            int 行数 = Mathf.CeilToInt((float)X / 列数);
+
             A.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            A.constraintCount = X;
+            A.constraintCount = 列数;
             A.spacing = new Vector2(5, 5);
-            A.cellSize = new Vector2((B.rect.width - (X - 1) * A.spacing.x) / X, (B.rect.height - (Y - 1) * A.spacing.y) / Y);
-            for (int i = 0; i < X * Y; i++) {
+            A.cellSize = new Vector2((B.rect.width - (列数 - 1) * A.spacing.x) / 列数,
+                                     (B.rect.height - (行数 - 1) * A.spacing.y) / 行数);
+            for (int i = 0; i < X; i++) {
                 var C = new GameObject($"单元格_{i}");
                 C.transform.SetParent(obj.transform, false);
                 C.AddComponent<Image>().color = Color.gray;

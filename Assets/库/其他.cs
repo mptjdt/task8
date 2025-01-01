@@ -16,5 +16,11 @@ namespace 墨心 {
                 obj.GetComponent<SpriteRenderer>().transform.localScale = Vector3.Lerp(A, A * 0.01f, array[i]);
             }
         }
+        public static void 滚轮缩放() {
+            var A = MainCamera.GetComponent<Camera>();
+            float 滚轮输入 = Input.GetAxis("Mouse ScrollWheel");
+            A.orthographicSize -= 滚轮输入 * 2f;
+            A.orthographicSize = Mathf.Clamp(A.orthographicSize, 1f, 10f);
+        }
     }
 }

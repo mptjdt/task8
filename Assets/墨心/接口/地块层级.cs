@@ -48,18 +48,18 @@ namespace 墨心.Task8 {
         public static string 掉落(this 建筑种类 X) {
             switch (X) {
                 case 建筑种类.无:
-                    break;
+                    return null;
                 case 建筑种类.树木:
                     if (Random.value <= 0.6f) {
                         return "种子*1";
                     }
-                    break;
+                    return null;
                 case 建筑种类.箱子:
-                    break;
+                    return null;
                 default:
-                    break;
+                    return null;
             }
-            return null;
         }
+
     }
 }

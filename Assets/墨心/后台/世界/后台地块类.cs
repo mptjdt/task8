@@ -31,8 +31,9 @@ namespace 墨心.Task8 {
                 Event.建筑受伤(this);
             }
             if (建筑层.耐久 == 0) {
-                if (建筑层.类型.掉落() != null) {
-                    悬浮层 = 悬浮类.To悬浮(建筑层.类型.掉落());//掉落文本格式：XX*X XX*X
+                var A = 建筑层.类型.掉落();
+                if (A!= null) {
+                    悬浮层 = 悬浮类.To悬浮(A);//掉落文本格式：XX*X XX*X
                     Event.建筑掉落(this);
                 }
                 建筑层 = null;

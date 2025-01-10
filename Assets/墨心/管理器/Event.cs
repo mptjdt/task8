@@ -76,10 +76,13 @@ namespace 墨心.Task8 {
                 }
             };
             当建筑掉落 += (X) => {
-                后台世界.Player.背包.添加物品(new 后台物品类() {
-                    名称 = X.悬浮层.道具们.Keys.ElementAt(0),
-                    数量 = X.悬浮层.道具们.Values.ElementAt(0)
-                });
+                foreach (var A in X.悬浮层.道具们) {
+                    Print($"物品: {A.Key}, 数量: {A.Value}");
+                    后台世界.Player.背包.添加物品(new 后台物品类() {
+                        名称 = A.Key,
+                        数量 = A.Value
+                    });
+                }              
                 X.悬浮层 = null;
                 UI.更新背包显示(后台世界.Player.背包);
             };

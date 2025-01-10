@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using static 墨心.GameManager;
@@ -21,19 +22,18 @@ namespace 墨心.Task8 {
             背包面板.SetActive(Z);
         }
         public void 创建角色面板() {
-            角色面板 = MainPanel.创建矩形(1f, 0.9f, 0.1f, 0.1f);
+            角色面板 = MainPanel.创建矩形(0.9f, 0.9f, 0.1f, 0.1f);
             角色面板.SetColor(Color.white);
             角色面板.SetText("");
         }
         public void 更新背包显示(I背包 X) {
-            for (int i = 0; i < X.芥子上限; i++) {
-                所有物品[i] = 背包面板.transform.GetChild(i).gameObject;
-                if (X.物品列表[i] != null) {
-                    所有物品[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X.物品列表[i].名称);
+            背包面板.Clear();
+            for (int i = 0; i < X.物品列表.Count; i++) {
+                var A=背包面板.创建矩形().SetColorDirectly(Color.gray);
+                if (X.物品列表[i] == null) {
+                    continue; 
                 }
-                //背包面板.Clear();
-                //for (int i = 0; i < X.物品列表.Count; i++) {
-                //背包面板.创建矩形().SetColor(Color.gray).SetSprite("背包" + X.物品列表[i].名称);
+                A.GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X.物品列表[i].名称);
             }
         }
         public void 开关背包(bool X) {

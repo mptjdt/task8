@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using static 墨心.GameManager;
+using Random = UnityEngine.Random;
 
 namespace 墨心.Task8 {
     public class 后台世界类 : I世界 {
         private I地块[,] Grid;
-        private I地块 Default地块 = new 后台地块类();
         public I地块 this[int x, int y] {
             get {
                 if (x < 0 || x >= Grid.GetLength(0) || y < 0 || y >= Grid.GetLength(1)) {
-                    return Default地块;
+                    throw new Exception("坐标越界");
                 }
                 return Grid[x, y];
             }
             set {
-                if (x >= 0 && x < Grid.GetLength(0) && y >= 0 && y < Grid.GetLength(1)) {
-                    Grid[x, y] = value;
+                if (x < 0 || x >= Grid.GetLength(0) || y < 0 || y >= Grid.GetLength(1)) {
+                    throw new Exception("坐标越界");
                 }
+                Grid[x, y] = value;
             }
         }
         public int Width => Grid.GetLength(0);

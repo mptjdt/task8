@@ -23,19 +23,19 @@ namespace 墨心.Task8 {
         }
         public static void 地块矿石采光(I地块 X) {
             当地块采光?.Invoke(X);
-        }        
+        }
         public static void 地块采集成功(I地块 X) {
             当地块采集成功?.Invoke(X);
-        }       
+        }
         public static void 建筑受伤(I地块 X) {
             当建筑受伤?.Invoke(X);
-        }       
+        }
         public static void 地块建筑被毁(I地块 X) {
             当地块建筑被毁?.Invoke(X);
-        }        
+        }
         public static void 建筑掉落(I地块 X) {
             当建筑掉落?.Invoke(X);
-        }      
+        }
         public static void 玩家死亡() {
             当玩家死亡?.Invoke();
         }
@@ -82,7 +82,7 @@ namespace 墨心.Task8 {
                         名称 = A.Key,
                         数量 = A.Value
                     });
-                }              
+                }
                 X.悬浮层 = null;
                 UI.更新背包显示(后台世界.Player.背包);
             };

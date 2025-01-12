@@ -53,15 +53,45 @@ namespace 墨心.Task8 {
         }
         public void 填充草地(int 尺寸,int 数量) {
             Print("正在填充草地...");
+            int X = Random.Range(0, Width);
+            int Y = Random.Range(0, Height);
+            边缘地块列表.Add(new Vector2Int(X, Y));
             for (int i = 0; i < 数量; i++) {
-                传染草地(Random.Range(0, Width), Random.Range(0, Height), 尺寸);
+                var 边缘地块 = 边缘地块列表[Random.Range(0, 边缘地块列表.Count)];
+                传染草地(边缘地块.x, 边缘地块.y, 尺寸);
             }
         }
         private void 传染草地(int X, int Y, int 剩余传染次数) {
-            if (剩余传染次数 <= 0) return;
+            if (剩余传染次数 <= 0) return;     
             this[X, Y].土质层 = 土质类.创建草地地块();
-            传染草地(X + Choice(0, 1, -1), Y + Choice(0, 1, -1), 剩余传染次数 - 1);
+            var A = 边缘地块列表[Random.Range(0, 边缘地块列表.Count)];
+            var B = A.x + Choice(0, 1, -1);
+            var C = A.y + Choice(0, 1, -1);
+            更新边缘地块列表(B, C);
+            传染草地(B, C, 剩余传染次数 - 1);
         }
+        private List<Vector2Int> 边缘地块列表 = new List<Vector2Int>();
+        private void 更新边缘地块列表(int X, int Y) {
+            if (判断边缘地块(X, Y)) {
+                边缘地块列表.Add(new Vector2Int(X, Y));
+            }
+            //移除非边缘地块();
+        }
+        private bool 判断边缘地块(int X, int Y) {
+            if (X <= 1 || Y <= 1 || X >= Width - 1 || Y >= Height - 1) {
+                return false;
+            }
+            if (this[X - 1, Y].土质层.类型 == 土质种类.草地 &&
+                this[X + 1, Y].土质层.类型 == 土质种类.草地 &&
+                this[X, Y - 1].土质层.类型 == 土质种类.草地 &&
+                this[X, Y + 1].土质层.类型 == 土质种类.草地) {
+                return false;
+            }
+            return true;
+        }
+        //private void 移除非边缘地块() {
+            //边缘地块列表.RemoveAll(地块 => !判断边缘地块(地块.x, 地块.y));
+        //}
         public void 种植树木() {
             Print("正在种植树木...");
             for (int i = 0; i < Width; i++) {

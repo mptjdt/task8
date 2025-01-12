@@ -12,7 +12,7 @@ namespace 墨心.Task8 {
         public int 高度 = 100;
         public int 铜矿尺寸 = 10;
         public int 铜矿数量 = 10;
-        public int 草地尺寸 = 4000;
+        public int 草地尺寸 = 400;
         public int 草地数量 = 1;
         public 玩家设定类 玩家设定 = new();
     }
@@ -21,7 +21,8 @@ namespace 墨心.Task8 {
         public int 玩家转速 = 5;
         public int 玩家血量 = 100;
         public int 玩家饱腹值 = 100;
-        public int 背包芥子上限 = 42;
+        public int 背包体积限制 = 30;
+        public int 背包重量限制 = 30;
     }
     public class 笔记设定类 {
         public bool 背包是否打开 = false;
@@ -35,7 +36,7 @@ namespace 墨心.Task8 {
             后台世界.种植树木();
             后台世界.洒下几堆铜矿(X.铜矿尺寸, X.铜矿数量);
             后台世界.创建玩家(X.玩家设定);
-            后台世界.Player.背包.创建背包(X.玩家设定.背包芥子上限);
+            后台世界.Player.背包.创建背包(X.玩家设定.背包体积限制,X.玩家设定.背包重量限制);
         }
         public static void 创建笔记流程(笔记设定类 X) {
             笔记.背包是否打开 = X.背包是否打开;
@@ -65,7 +66,7 @@ namespace 墨心.Task8 {
         public static void 绘制UI流程() {
             UI.创建信息面板();
             UI.创建角色面板();
-            UI.创建背包面板(后台世界.Player.背包.芥子上限, 笔记.背包是否打开);
+            UI.创建背包面板(笔记.背包是否打开);
             UI.更新背包显示(后台世界.Player.背包);
             OnAppUpdate(() => {
                 UI.角色面板.GetComponentInChildren<Text>().text = 后台世界.Player.展示文本();

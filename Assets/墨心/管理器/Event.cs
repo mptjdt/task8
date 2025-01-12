@@ -49,7 +49,7 @@ namespace 墨心.Task8 {
             };
             当地块采集成功 += (X) => {
                 if (X.矿石层 != null) {
-                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = X.矿石层.类型.ToString(), 数量 = 1 });
+                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = X.矿石层.类型.ToString(), 数量 = 1,体积 = 2,重量 = 2 });
                 }
                 UI.更新背包显示(后台世界.Player.背包);
             };
@@ -64,7 +64,7 @@ namespace 墨心.Task8 {
                 if (X.建筑层 != null) {
                     前台世界.所有建筑.TryGetValue(X.坐标, out GameObject A);
                     A.Tremble();
-                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = X.建筑层.类型.ToString(), 数量 = 2 });
+                    后台世界.Player.背包.添加物品(new 后台物品类() { 名称 = X.建筑层.类型.ToString(), 数量 = 2,体积 = 2,重量 = 1});
                 }
                 UI.更新背包显示(后台世界.Player.背包);
             };
@@ -80,7 +80,9 @@ namespace 墨心.Task8 {
                     Print($"物品: {A.Key}, 数量: {A.Value}");
                     后台世界.Player.背包.添加物品(new 后台物品类() {
                         名称 = A.Key,
-                        数量 = A.Value
+                        数量 = A.Value,
+                        体积=1,
+                        重量=1
                     });
                 }
                 X.悬浮层 = null;

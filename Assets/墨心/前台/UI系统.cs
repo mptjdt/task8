@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +16,11 @@ namespace 墨心.Task8 {
             信息面板.SetColor(Color.white);
             信息面板.SetText("");
         }
-        public void 创建背包面板(int X,bool Z) {
-            背包面板 = MainPanel.创建矩形(0.5f, 0.5f, 0.4f, 0.6f);         
-            背包面板.SetGrid(X);
+        public void 创建背包面板(bool X) {
+            背包面板 = MainPanel.创建矩形(0.5f, 0.5f, 0.4f, 0.6f);
+            背包面板.SetGrid(50);
             背包面板.SetColorDirectly(Color.white);
-            背包面板.SetActive(Z);
+            背包面板.SetActive(X);
         }
         public void 创建角色面板() {
             角色面板 = MainPanel.创建矩形(0.9f, 0.9f, 0.1f, 0.1f);
@@ -29,10 +30,7 @@ namespace 墨心.Task8 {
         public void 更新背包显示(I背包 X) {
             背包面板.Clear();
             for (int i = 0; i < X.物品列表.Count; i++) {
-                var A=背包面板.创建矩形().SetColorDirectly(Color.gray);
-                if (X.物品列表[i] == null) {
-                    continue; 
-                }
+                var A = 背包面板.创建矩形().SetColorDirectly(Color.gray);
                 A.GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X.物品列表[i].名称);
             }
         }

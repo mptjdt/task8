@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
-using static 墨心.GameManager;
+using static 墨心.LocalStorage;
 
 namespace 墨心.Task8 {
     public class UI系统 {
@@ -37,5 +37,13 @@ namespace 墨心.Task8 {
         public void 开关背包(bool X) {
             背包面板.SetActive(X);
         }
+    }
+    public static partial class LocalStorage {
+        public static void 创建背包格子() {
+
+        }
+    }
+    public class 背包格子 {
+
     }
 }

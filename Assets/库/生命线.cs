@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace 墨心 {
-    public static partial class GameManager {
+    public static partial class LocalStorage {
         public static Action OnAppUpdateCallback;
         public static void OnAppUpdate(Action X) {
             EnsureLifeLineComponent();
@@ -26,10 +26,10 @@ namespace 墨心 {
     }
     public class LifeLine : MonoBehaviour {
         public void Update() {
-            GameManager.OnAppUpdateCallback?.Invoke();
+            LocalStorage.OnAppUpdateCallback?.Invoke();
         }
         public void OnDestroy() {
-            GameManager.OnAppDestroyCallback?.Invoke();
+            LocalStorage.OnAppDestroyCallback?.Invoke();
         }
         public IEnumerator OnAppSecondsCoroutine(float X , Action Y) {
             while (true) {

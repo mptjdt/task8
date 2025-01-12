@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static 墨心.GameManager;
+using static 墨心.LocalStorage;
 
 namespace 墨心.Task8 {
     public interface I层级 {

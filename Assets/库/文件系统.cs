@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.IO;
 
 namespace 墨心 {
-    public static partial class GameManager {
+    public static partial class LocalStorage {
         public static void FileWrite<T>(string X, T Y) {
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,

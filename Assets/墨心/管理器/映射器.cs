@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace 墨心.Task8 {
-    public static partial class GameManager {
+    public static partial class LocalStorage {
         public static Vector2Int 获取后台坐标(Vector2 screenPosition) {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             Vector2 worldPos = new Vector2(worldPosition.x, worldPosition.y);// 使用摄像头将屏幕坐标转换为世界坐标

@@ -1,8 +1,8 @@
 ﻿using System; // 用于 Action 和事件定义
 using UnityEngine;
 using static UnityEngine.Object;
-using static 墨心.GameManager;
-using static 墨心.Task8.GameManager;
+using static 墨心.LocalStorage;
+using static 墨心.Task8.LocalStorage;
 using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;

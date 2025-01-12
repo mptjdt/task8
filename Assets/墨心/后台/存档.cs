@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json; // 引入 Newtonsoft.Json 命名空间
 using UnityEngine;
-using static 墨心.GameManager;
-using static 墨心.Task8.GameManager;
+using static 墨心.LocalStorage;
+using static 墨心.Task8.LocalStorage;
 
 namespace 墨心.Task8 {
     public class 存档管理 {

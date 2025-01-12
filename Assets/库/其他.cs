@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 namespace 墨心 {
-    public static partial class GameManager {
+    public static partial class LocalStorage {
         public static Sprite LoadSprite(string path) => Resources.Load<Sprite>(path) ?? throw new System.Exception($"图片不存在：{path}");
         public static T Choice<T>(params T[] X) => X[Random.Range(0, X.Length)];
         public static void Print(string X) => Debug.Log(X);

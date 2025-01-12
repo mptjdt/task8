@@ -4,7 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Object;
-using static 墨心.GameManager;
+using static 墨心.LocalStorage;
 
 namespace 墨心.Task8 {
     public class 世界设定类 {
@@ -27,7 +27,7 @@ namespace 墨心.Task8 {
     public class 笔记设定类 {
         public bool 背包是否打开 = false;
     }
-    public static partial class GameManager {
+    public static partial class LocalStorage {
         public static void 创建世界流程(世界设定类 X) {
             后台世界 = new();
             后台世界.创建世界(X.宽度, X.高度);

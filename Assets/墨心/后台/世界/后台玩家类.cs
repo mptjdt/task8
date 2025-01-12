@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
-using static 墨心.GameManager;
+using static 墨心.LocalStorage;
 
 namespace 墨心.Task8 {
     public class 后台玩家类 : I角色 {

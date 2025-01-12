@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using static 墨心.GameManager;
+using static 墨心.LocalStorage;
 using UnityEngine;
 using System.Linq;
 

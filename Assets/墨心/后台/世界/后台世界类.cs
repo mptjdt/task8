@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using static 墨心.GameManager;
+using static 墨心.LocalStorage;
 using Random = UnityEngine.Random;
 
 namespace 墨心.Task8 {

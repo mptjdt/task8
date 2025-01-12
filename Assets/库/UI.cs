@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace 墨心 {
-    public static partial class GameManager {
+    public static partial class LocalStorage {
         public static Canvas _MainPanel;
         public static Canvas MainPanel => _MainPanel ?? (_MainPanel = new GameObject("MainPanel").AddComponent<Canvas>());
         public static GameObject SetColor(this GameObject obj, Color color) {

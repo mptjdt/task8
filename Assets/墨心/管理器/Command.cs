@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using static 墨心.GameManager;
-using static 墨心.Task8.GameManager;
+using static 墨心.LocalStorage;
+using static 墨心.Task8.LocalStorage;
 using UnityEngine.UI;
 using static UnityEngine.Object;
 using System;

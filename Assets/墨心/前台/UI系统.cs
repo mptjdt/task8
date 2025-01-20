@@ -46,8 +46,8 @@ namespace 墨心.Task8 {
         public GameObject 垫子层;
         public GameObject 道具层;
         public 背包格子驱动 SetData(I物品 X = null) {
-            垫子层?.Destory();
-            道具层?.Destory();
+            Destroy(垫子层);
+            Destroy(道具层);
             垫子层 = gameObject.创建矩形().SetColorDirectly(Color.gray);
             if (X != null) {
                 道具层 = 垫子层.创建矩形().SetSprite("背包" + X.名称);

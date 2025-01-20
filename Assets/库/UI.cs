@@ -16,7 +16,7 @@ namespace 墨心 {
             return obj;
         }
         public static GameObject SetColorDirectly(this GameObject obj, Color color) {
-            obj.AddComponent<Image>().color = color;
+            (obj.GetComponent<Image>() ?? obj.AddComponent<Image>()).color = color;
             return obj;
         }
         public static GameObject SetGrid(this GameObject obj, int X) {
@@ -47,6 +47,10 @@ namespace 墨心 {
             A.color = Color.black;
             A.fontSize = 14;
             A.text = text;
+            return obj;
+        }
+        public static GameObject SetSprite(this GameObject obj,string X) {
+            (obj.GetComponent<Image>() ?? obj.AddComponent<Image>()).sprite = Resources.Load<Sprite>(X);
             return obj;
         }
         public static GameObject 创建矩形(this Canvas canvas, float 左, float 上, float 宽度, float 高度) {

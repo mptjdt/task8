@@ -16,7 +16,7 @@ namespace 墨心.Task8 {
         }
         public void 创建背包面板(bool X) {
             背包面板 = MainPanel.创建矩形(0.5f, 0.5f, 0.4f, 0.6f);
-            背包面板.SetGrid(50);
+            背包面板.SetGrid();
             背包面板.SetColorDirectly(Color.white);
             背包面板.SetActive(X);
         }
@@ -28,8 +28,6 @@ namespace 墨心.Task8 {
         public void 更新背包显示(I背包 X) {
             背包面板.Clear();
             for (int i = 0; i < X.物品列表.Count; i++) {
-                //var A = 背包面板.创建矩形().SetColorDirectly(Color.gray);
-                //A.GetComponent<Image>().sprite = Resources.Load<Sprite>("背包" + X.物品列表[i].名称);
                 背包面板.创建背包格子(X.物品列表[i]);
             }
         }
@@ -39,7 +37,9 @@ namespace 墨心.Task8 {
     }
     public static partial class LocalStorage {
         public static 背包格子驱动 创建背包格子(this GameObject X, I物品 Y) {
-            return X.创建矩形().AddComponent<背包格子驱动>().SetData(Y);
+            var A= X.创建矩形().AddComponent<背包格子驱动>().SetData(Y);
+            A.transform.SetParent(X.transform, false);
+            return A;
         }
     }
     public class 背包格子驱动 : MonoBehaviour {
@@ -48,7 +48,7 @@ namespace 墨心.Task8 {
         public 背包格子驱动 SetData(I物品 X = null) {
             Destroy(垫子层);
             Destroy(道具层);
-            垫子层 = gameObject.创建矩形().SetColorDirectly(Color.gray);
+            垫子层 = gameObject.创建矩形().SetColor(Color.gray);
             if (X != null) {
                 道具层 = 垫子层.创建矩形().SetSprite("背包" + X.名称);
             }

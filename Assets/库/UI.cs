@@ -19,21 +19,13 @@ namespace 墨心 {
             (obj.GetComponent<Image>() ?? obj.AddComponent<Image>()).color = color;
             return obj;
         }
-        public static GameObject SetGrid(this GameObject obj, int X) {
+        public static GameObject SetGrid(this GameObject obj,int 列数=4,int 行数=5) {
             var A = obj.GetComponent<GridLayoutGroup>() ?? obj.AddComponent<GridLayoutGroup>();
             var B = obj.GetComponent<RectTransform>();
-            int 列数 = Mathf.CeilToInt(Mathf.Sqrt(X));
-            int 行数 = Mathf.CeilToInt((float)X / 列数);
             A.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             A.constraintCount = 列数;
-            A.spacing = new Vector2(5, 5);
-            A.cellSize = new Vector2((B.rect.width - (列数 - 1) * A.spacing.x) / 列数,
-                                     (B.rect.height - (行数 - 1) * A.spacing.y) / 行数);
-            for (int i = 0; i < X; i++) {
-                var C = new GameObject($"单元格_{i}");
-                C.transform.SetParent(obj.transform, false);
-                C.AddComponent<Image>().color = Color.gray;
-            }
+            A.spacing = new Vector2(0, 0);
+            A.cellSize = new Vector2(B.rect.width/列数, B.rect.height/行数);
             return obj;
         }
         public static GameObject SetText(this GameObject obj, string text) {

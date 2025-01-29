@@ -10,7 +10,7 @@ namespace 墨心.Task8 {
         public void 创建世界(int 宽度, int 高度);
         public void 洒下几堆铜矿(int 尺寸, int 数量);
         public void 填充沙漠();
-        public void 填充草地(int 尺寸, int 数量);
+        public void 填充草地(int 尺寸);
         public void 种植树木();
         public void 创建玩家(玩家设定类 X);
     }

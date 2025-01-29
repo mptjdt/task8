@@ -3,33 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using static 墨心.LocalStorage;
 using Random = UnityEngine.Random;
+using 墨心;
 
 namespace 墨心.Task8 {
     public class 后台世界类 : I世界 {
-        private I地块[,] Grid;
+        private Grid<I地块> grid;
         public I地块 this[int x, int y] {
             get {
-                if (x < 0 || x >= Grid.GetLength(0) || y < 0 || y >= Grid.GetLength(1)) {
+                if (x < 0 || x >= grid.宽度 || y < 0 || y >= grid.高度) {
                     throw new Exception("坐标越界");
                 }
-                return Grid[x, y];
+                return grid[x, y].Value;
             }
             set {
-                if (x < 0 || x >= Grid.GetLength(0) || y < 0 || y >= Grid.GetLength(1)) {
+                if (x < 0 || x >= grid.宽度 || y < 0 || y >= grid.高度) {
                     throw new Exception("坐标越界");
                 }
-                Grid[x, y] = value;
+                grid[x, y].Value = value;
             }
         }
-        public int Width => Grid.GetLength(0);
-        public int Height => Grid.GetLength(1);
+        public int Width => grid.宽度;
+        public int Height => grid.高度;
         public I角色 Player { get; set; }
         public void 创建世界(int 宽度, int 高度) {
             Print("正在创建世界...");
-            Grid = new 后台地块类[宽度, 高度];
+            grid = new Grid<I地块>(宽度, 高度);
             for (int i = 0; i < 宽度; i++) {
                 for (int j = 0; j < 高度; j++) {
-                    Grid[i, j] = new 后台地块类 { 坐标 = new Vector2Int(i, j) };
+                    grid[i, j] = new 芥子<I地块> { X = i, Y = j, Value = new 后台地块类 { 坐标 = new Vector2Int(i, j) } };
                 }
             }
         }
@@ -52,47 +53,16 @@ namespace 墨心.Task8 {
                 }
             }
         }
-        public void 填充草地(int 尺寸,int 数量) {
+        public void 填充草地(int 尺寸) {
             Print("正在填充草地...");
-            int X = Random.Range(0, Width);
-            int Y = Random.Range(0, Height);
-            边缘地块列表.Add(new Vector2Int(X, Y));
-            for (int i = 0; i < 数量; i++) {
-                var 边缘地块 = 边缘地块列表[Random.Range(0, 边缘地块列表.Count)];
-                传染草地(边缘地块.x, 边缘地块.y, 尺寸);
+            var 目标网格 = grid.生成大区(Random.Range(0, Width), Random.Range(0, Height), 尺寸);
+            for (int i = 0; i < grid.宽度; i++) {
+                for (int j = 0; j < grid.高度; j++) {
+                    var 芥子 = grid[i, j];
+                    this[芥子.X, 芥子.Y].土质层 = 土质类.创建草地地块();
+                }
             }
         }
-        private void 传染草地(int X, int Y, int 剩余传染次数) {
-            if (剩余传染次数 <= 0) return;     
-            this[X, Y].土质层 = 土质类.创建草地地块();
-            var A = 边缘地块列表[Random.Range(0, 边缘地块列表.Count)];
-            var B = A.x + Choice(0, 1, -1);
-            var C = A.y + Choice(0, 1, -1);
-            更新边缘地块列表(B, C);
-            传染草地(B, C, 剩余传染次数 - 1);
-        }
-        private List<Vector2Int> 边缘地块列表 = new List<Vector2Int>();
-        private void 更新边缘地块列表(int X, int Y) {
-            if (判断边缘地块(X, Y)) {
-                边缘地块列表.Add(new Vector2Int(X, Y));
-            }
-            //移除非边缘地块();
-        }
-        private bool 判断边缘地块(int X, int Y) {
-            if (X <= 1 || Y <= 1 || X >= Width - 1 || Y >= Height - 1) {
-                return false;
-            }
-            if (this[X - 1, Y].土质层.类型 == 土质种类.草地 &&
-                this[X + 1, Y].土质层.类型 == 土质种类.草地 &&
-                this[X, Y - 1].土质层.类型 == 土质种类.草地 &&
-                this[X, Y + 1].土质层.类型 == 土质种类.草地) {
-                return false;
-            }
-            return true;
-        }
-        //private void 移除非边缘地块() {
-            //边缘地块列表.RemoveAll(地块 => !判断边缘地块(地块.x, 地块.y));
-        //}
         public void 种植树木() {
             Print("正在种植树木...");
             for (int i = 0; i < Width; i++) {

@@ -34,7 +34,7 @@ namespace 墨心 {
                 }
                 Values[x, y] = value;
             }
-        }  
+        }
         public List<芥子<T>> GetRound(int X, int Y, int 半径 = 1, bool 空心 = true) {
             var A = new List<芥子<T>> {
                 Values[X-半径, Y-半径],Values[X, Y-半径],Values[X+半径, Y-半径],

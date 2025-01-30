@@ -7,15 +7,14 @@ using static 墨心.LocalStorage;
 using static 墨心.Task8.LocalStorage;
 
 namespace 墨心.Task8 {
-    public class 存档管理:I存档管理 {
+    public class 存档管理 : I存档管理 {
         private string 世界文件路径;
         private string 笔记文件路径;
         public 存档管理() {
             if (Application.isEditor) {
                 世界文件路径 = Path.Combine(Application.dataPath, "worldFile.json");
                 笔记文件路径 = Path.Combine(Application.dataPath, "notesFile.json");
-            }
-            else {
+            } else {
                 世界文件路径 = Path.Combine(Application.persistentDataPath, "worldFile.json");
                 笔记文件路径 = Path.Combine(Application.persistentDataPath, "notesFile.json");
             }
@@ -35,7 +34,7 @@ namespace 墨心.Task8 {
             }
             后台世界 = FileRead<后台世界类>(世界文件路径);
             笔记 = FileRead<笔记类>(笔记文件路径);
-            if (后台世界 == null||笔记==null) {
+            if (后台世界 == null || 笔记 == null) {
                 return false;
             }
             return true;

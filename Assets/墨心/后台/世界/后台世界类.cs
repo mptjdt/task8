@@ -25,6 +25,12 @@ namespace 墨心.Task8 {
         public int Width => grid.宽度;
         public int Height => grid.高度;
         public I角色 Player { get; set; }
+        public bool Is坐标合法(int x,int y) {
+            if (x < 0 || x >= grid.宽度 || y < 0 || y >= grid.高度) {
+                return false;
+            }
+            return true;
+        }
         public void 创建世界(int 宽度, int 高度) {
             Print("正在创建世界...");
             grid = new Grid<I地块>(宽度, 高度);
@@ -42,6 +48,7 @@ namespace 墨心.Task8 {
         }
         private void 传染铜矿(int X, int Y, int 剩余传染次数) {
             if (剩余传染次数 <= 0 ) return;
+            if (!Is坐标合法(X, Y)) return;
             this[X, Y].矿石层 = 矿石类.创建铜矿地块();
             传染铜矿(X + Choice(0, 1, -1), Y + Choice(0, 1, -1), 剩余传染次数 - 1);
         }

@@ -35,14 +35,24 @@ namespace 墨心 {
                 Values[x, y] = value;
             }
         }
+        public 芥子<T> TryGetValue(int x, int y) {
+            if (x < 0 || x >= 宽度 || y < 0 || y >= 高度) {
+                return null;
+            }
+            return Values[x, y];
+        }
         public List<芥子<T>> GetRound(int X, int Y, int 半径 = 1, bool 空心 = true) {
-            var A = new List<芥子<T>> {
-                Values[X-半径, Y-半径],Values[X, Y-半径],Values[X+半径, Y-半径],
-                Values[X-半径, Y],Values[X+半径, Y],
-                Values[X-半径, Y+半径],Values[X, Y+半径],Values[X+半径, Y+半径],
-            };
-            var B = new List<芥子<T>>(A) { Values[X, Y] };
-            return (半径 == 1) ? (空心 ? A : B) : new List<芥子<T>>();
+            var A = new List<芥子<T>>();
+            for (int i = -半径; i <= 半径; i++) {
+                for (int j = -半径; j <= 半径; j++) {
+                    if (i == 0 && j == 0 && !空心) continue; // Skip the center if not hollow
+                    var B = TryGetValue(X + i, Y + j);
+                    if (B != null) {
+                        A.Add(B);
+                    }
+                }
+            }
+            return A;
         }
         //public Grid<T> 生成小堆(int X, int Y, int 尺寸) {
 

@@ -63,11 +63,8 @@ namespace 墨心.Task8 {
         public void 填充草地(int 尺寸) {
             Print("正在填充草地...");
             var 目标网格 = grid.生成大区(Random.Range(0, Width), Random.Range(0, Height), 尺寸);
-            for (int i = 0; i < grid.宽度; i++) {
-                for (int j = 0; j < grid.高度; j++) {
-                    var 芥子 = grid[i, j];
-                    this[芥子.X, 芥子.Y].土质层 = 土质类.创建草地地块();
-                }
+            foreach (var 芥子 in 目标网格) {
+                this[芥子.X, 芥子.Y].土质层 = 土质类.创建草地地块();
             }
         }
         public void 种植树木() {

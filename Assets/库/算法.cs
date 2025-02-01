@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Random = System.Random;
 
 namespace 墨心 {
     public class Grid<T> {
@@ -57,85 +58,40 @@ namespace 墨心 {
         //public Grid<T> 生成小堆(int X, int Y, int 尺寸) {
 
         //}
-        public Grid<T> 生成大区(int X, int Y, int 尺寸) {
+        public List<芥子<T>> 生成大区(int X, int Y, int 尺寸) {
             var 背景网格 = Clone();
-            var 目标网格 = Clone().Clear();
-            var 边缘网格 = Clone().Clear();
-            目标网格.Add(背景网格[X, Y]);
-            边缘网格.Add(背景网格[X, Y]);
-            背景网格.RemoveAt(X, Y);
+            var 目标网格 = new List<芥子<T>>();
+            var 边缘网格 = new List<芥子<T>>();
+            目标网格.Add(this[X, Y]);
+            边缘网格.Add(this[X, Y]);
+            背景网格.Remove(this[X,Y]);
             while (目标网格.Count() < 尺寸 && 边缘网格.Count() > 0) {
                 var 随机边缘坐标 = 边缘网格.RandomSpace();
                 var 周围八格 = GetRound(随机边缘坐标.X, 随机边缘坐标.Y);
                 var 外界点 = 周围八格.Choice(t => 背景网格.Contains(t));
                 if (外界点 == null) {
-                    边缘网格.RemoveAt(随机边缘坐标.X,随机边缘坐标.Y);
+                    边缘网格.Remove(随机边缘坐标);
                     continue;
                 }
                 目标网格.Add(外界点);
                 边缘网格.Add(外界点);
-                背景网格.RemoveAt(外界点.X,外界点.Y);
+                背景网格.Remove(外界点);
                 foreach (var i in GetRound(外界点.X, 外界点.Y)) {
                     if (i == null) {
-                        边缘网格.RemoveAt(i.X, i.Y);
+                        边缘网格.Remove(i);
                     }
                 }
             }
             return 目标网格;
         }
-        public Grid<T> Clone() {
-            var A = new Grid<T>(宽度, 高度);
+        public List<芥子<T>> Clone() {
+            var A = new List<芥子<T>>();
             for (int i = 0; i < 宽度; i++) {
                 for (int j = 0; j < 高度; j++) {
-                    A[i, j] = new 芥子<T> {
-                        X = Values[i, j].X,
-                        Y = Values[i, j].Y,
-                        Value = Values[i, j].Value
-                    };
+                    A.Add(Values[i, j]);
                 }
             }
             return A;
-        }
-        public Grid<T> Clear() {
-            for (int i = 0; i < 宽度; i++) {
-                for (int j = 0; j < 高度; j++) {
-                    Values[i, j] = new 芥子<T> {
-                        X = i,
-                        Y = j,
-                        Value = default(T)
-                    };
-                }
-            }
-            return this;
-        }
-        public Grid<T> Add(芥子<T> X) {
-            this[X.X, X.Y] = X;
-            return this;
-        }
-        public int Count() {
-            int count = 0;
-            for (int i = 0; i < 宽度; i++) {
-                for (int j = 0; j < 高度; j++) {
-                    if (!EqualityComparer<T>.Default.Equals(Values[i, j].Value, default(T))) {
-                        count++;
-                    }
-                }
-            }
-            return count;
-        }
-        public Grid<T> RemoveAt(int X,int Y) {
-            Values[X, Y] = new 芥子<T> {
-                X = X,
-                Y = Y,
-                Value = default(T)
-            };
-            return this;
-        }
-        public 芥子<T> RandomSpace() {
-            System.Random rand = new System.Random();
-            int randomX = rand.Next(0, 宽度);
-            int randomY = rand.Next(0, 高度);
-            return Values[randomX, randomY];
         }
         public bool Contains(芥子<T> 芥子) {
             return this[芥子.X, 芥子.Y].X == 芥子.X &&
@@ -154,6 +110,14 @@ namespace 墨心 {
     public static class GridExtensions {
         public static 芥子<T> Choice<T>(this List<芥子<T>> list, Func<芥子<T>, bool> X) {
             return list.FirstOrDefault(X);
+        }
+        private static Random random = new Random();
+        public static T RandomSpace<T>(this List<T> list) {
+            if (list == null || list.Count == 0) {
+                throw new Exception("列表为空");
+            }
+            var A = random.Next(list.Count);
+            return list[A];
         }
     }
 }

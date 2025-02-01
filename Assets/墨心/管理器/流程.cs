@@ -12,7 +12,7 @@ namespace 墨心.Task8 {
         public int 高度 = 100;
         public int 铜矿尺寸 = 10;
         public int 铜矿数量 = 10;
-        public int 草地尺寸 = 400;
+        public int 草地尺寸 = 4000;
         public 玩家设定类 玩家设定 = new();
     }
     public class 玩家设定类 {

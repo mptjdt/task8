@@ -85,6 +85,12 @@ namespace 墨心.Task8 {
                 if (Input.GetKey(KeyCode.D)) {
                     Command.帧右移();
                 }
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
+                    Command.加速();
+                }
+                if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)) {
+                    Command.减速();
+                }
                 if (Input.GetKeyDown(KeyCode.E)) {
                     Command.切换背包();
                 }

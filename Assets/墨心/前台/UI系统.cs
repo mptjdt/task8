@@ -15,9 +15,9 @@ namespace 墨心.Task8 {
             信息面板.SetText("");
         }
         public void 创建背包面板(bool X) {
-            背包面板 = MainPanel.创建矩形(0.5f, 0.5f, 0.4f, 0.6f);
+            背包面板 = MainPanel.创建矩形(0, 0, 0.4f, 0.6f);
             背包面板.SetGrid();
-            背包面板.SetColorDirectly(Color.white);
+            背包面板.SetColor(Color.white);
             背包面板.SetActive(X);
         }
         public void 创建角色面板() {

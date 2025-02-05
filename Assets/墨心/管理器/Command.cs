@@ -24,6 +24,14 @@ namespace 墨心.Task8 {
         public static void 帧右移() {
             PlayerMove(new Vector2(后台世界.Player.移动速度 * Time.deltaTime, 0), 270f);
         }
+        public static void 加速() {
+            后台世界.Player.移动速度 *= 2;
+            后台世界.Player.旋转速度 *= 2;
+        }
+        public static void 减速() {
+            后台世界.Player.移动速度 /= 2;
+            后台世界.Player.旋转速度 /= 2;
+        }
         public static void 开采地块(int X, int Y) {         
             if (后台世界[X, Y].建筑层 != null) {
                 后台世界[X, Y].拆除建筑();
